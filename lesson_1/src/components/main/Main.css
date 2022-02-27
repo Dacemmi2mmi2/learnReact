@@ -1,0 +1,20 @@
+.Main {
+    width: 100%;
+}
+
+.Main .overview,
+.Main .Body {
+    width: 100%;
+}
+
+.Main .title {
+    width: 100%;
+    font-size: 2vw;
+    font-weight: bold;
+    margin: 20px 0 0 0;
+}
+
+.Main .subTitle {
+    font-weight: 600;
+    margin: 5px 0 0 0;
+}
