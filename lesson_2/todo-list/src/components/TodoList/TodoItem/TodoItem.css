@@ -1,0 +1,20 @@
+.TodoItem {
+    width: 300px;
+    font-family: 'Montserrat Light';
+    color: #039;
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.TodoItem input {
+    margin: 0 10px 0 0;
+    pointer-events: none;
+}
+
+.TodoList label {
+    pointer-events: none;
+    text-decoration-line: none;
+}

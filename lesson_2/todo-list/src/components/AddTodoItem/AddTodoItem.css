@@ -1,0 +1,14 @@
+.AddTodoItem input {
+    font-family: 'Montserrat Light';
+    font-size: 15px;
+    padding: 5px;
+    margin: 0 10px 0 0;
+    width: 200px;
+}
+
+.AddTodoItem button {
+    font-family: 'Montserrat Light';
+    font-size: 15px;
+    padding: 5px;
+    cursor: pointer;    
+}

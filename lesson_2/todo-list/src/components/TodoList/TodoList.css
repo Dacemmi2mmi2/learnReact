@@ -1,0 +1,15 @@
+.TodoList {
+    list-style-type: none;
+    margin: 15px 0 0 0;
+    padding: 0 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.TodoList button {
+    font-family: 'Montserrat Light';
+    cursor: pointer;
+    display: none;
+}
