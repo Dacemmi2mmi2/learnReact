@@ -8,11 +8,15 @@ interface IOneItemArrayProps {
     completed: boolean,
 }
 
+interface IPropsTodoList {
+    [key: string]: string | boolean;
+}
+
 interface IStateTodoList {
     tasks: Array<IOneItemArrayProps>
 }
 
-class TodoList extends React.Component {
+class TodoList extends React.Component<IPropsTodoList> {
     state: IStateTodoList = {
         tasks: [
             {
@@ -43,8 +47,31 @@ class TodoList extends React.Component {
         ]
     }
 
+    constructor(props: IPropsTodoList) {
+        super(props);
+        this.addNewTodoItem = this.addNewTodoItem.bind(this);
+        this.removeTodoItem = this.removeTodoItem.bind(this);
+    }
+
+    removeTodoItem(id: number): void {
+        const { tasks } = this.state as IStateTodoList;
+        tasks.splice((id - 1), 1);
+        this.setState({ tasks: tasks });
+    }
+
+    addNewTodoItem(): void {
+        const { tasks } = this.state as IStateTodoList;
+        const { id, title, completed } = this.props as IPropsTodoList;
+        tasks.push({
+            id: id,
+            title: title,
+            completed: completed
+        } as IOneItemArrayProps);
+        this.setState({ tasks: tasks });
+    }
+
     render(): ReactElement {
-        const { tasks } = this.state;
+        const { tasks } = this.state as IStateTodoList;
         return <>
             <ul className="TodoList">
                 {
@@ -54,6 +81,7 @@ class TodoList extends React.Component {
                             id={item.id}
                             text={item.title}
                             status={item.completed}
+                            removeTodoItem={this.removeTodoItem}
                         />
                     })
                 }

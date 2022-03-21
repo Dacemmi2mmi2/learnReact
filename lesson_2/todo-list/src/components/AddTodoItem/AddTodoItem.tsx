@@ -6,7 +6,7 @@ interface IStateAddTodoItem {
 }
 
 interface IPropsAddTodoItem {
-    updateData: Function
+    updateData: Function,
 }
 
 class AddTodoItem extends React.Component<IPropsAddTodoItem> {
@@ -19,19 +19,19 @@ class AddTodoItem extends React.Component<IPropsAddTodoItem> {
         this.onInputChange = this.onInputChange.bind(this);
     }
 
+    onInputChange(event: ChangeEvent<HTMLInputElement>): void {
+        this.setState({ title: event.target.value });
+    }
+
     render(): ReactElement {
-        const { updateData } = this.props;
-        const { title } = this.state;
+        const { updateData } = this.props as IPropsAddTodoItem;
+        const { title } = this.state as IStateAddTodoItem;
         return <>
             <div className="AddTodoItem">
                 <input type="text" placeholder="text..." onChange={this.onInputChange}/>
                 <button onClick={(): void => updateData(title)}>Add item</button>
             </div>
         </>
-    }
-
-    onInputChange(event: ChangeEvent<HTMLInputElement>): void {
-        this.setState({ title: event.target.value });
     }
 }
 

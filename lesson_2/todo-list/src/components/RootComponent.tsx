@@ -13,7 +13,7 @@ class RootComponent extends React.Component {
     state: IStateRootComponent = {
         id: '',
         title: '',
-        completed: false
+        completed: false,
     }
  
     constructor(props: object) {
@@ -21,22 +21,21 @@ class RootComponent extends React.Component {
         this.updateData = this.updateData.bind(this);
     }
 
-    render(): ReactElement {
-        return <>
-            <Header />
-            <AddTodoItem updateData={this.updateData}/>
-            <TodoList />
-        </>
-    }
-
-    updateData(data: any): void {
+    updateData(data: string): void {
         id = id + 1;
         this.setState({
             id: String(id),
             title: data,
-            completed: false
-        });
-        console.log(data);
+            completed: false,
+        } as IStateRootComponent);
+    }
+
+    render(): ReactElement {
+        return <>
+            <Header />
+            <AddTodoItem updateData={this.updateData}/>
+            <TodoList {...this.state}/>
+        </>
     }
 }
 
