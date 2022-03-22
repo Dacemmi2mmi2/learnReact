@@ -9,14 +9,16 @@ interface IOneItemArrayProps {
 }
 
 interface IPropsTodoList {
-    [key: string]: string | boolean;
+    id: string,
+    title: string,
+    completed: boolean,
 }
 
 interface IStateTodoList {
     tasks: Array<IOneItemArrayProps>
 }
 
-class TodoList extends React.Component<IPropsTodoList> {
+class TodoList extends React.Component<IPropsTodoList | any> {
     state: IStateTodoList = {
         tasks: [
             {
@@ -51,12 +53,14 @@ class TodoList extends React.Component<IPropsTodoList> {
         super(props);
         this.addNewTodoItem = this.addNewTodoItem.bind(this);
         this.removeTodoItem = this.removeTodoItem.bind(this);
+        this.changeStatusTask = this.changeStatusTask.bind(this);
     }
 
-    removeTodoItem(id: number): void {
+    removeTodoItem(id: string): void {
         const { tasks } = this.state as IStateTodoList;
-        tasks.splice((id - 1), 1);
-        this.setState({ tasks: tasks });
+        this.setState({
+            tasks: tasks.filter(item => item.id !== id && item)
+        });
     }
 
     addNewTodoItem(): void {
@@ -67,6 +71,12 @@ class TodoList extends React.Component<IPropsTodoList> {
             title: title,
             completed: completed
         } as IOneItemArrayProps);
+        this.setState({ tasks: tasks });
+    }
+
+    changeStatusTask(value: string): void {
+        const { tasks } = this.state as IStateTodoList;
+        tasks.map(item => item.id === value && (item.completed = true));
         this.setState({ tasks: tasks });
     }
 
@@ -82,6 +92,7 @@ class TodoList extends React.Component<IPropsTodoList> {
                             text={item.title}
                             status={item.completed}
                             removeTodoItem={this.removeTodoItem}
+                            changeStatus={this.changeStatusTask}
                         />
                     })
                 }

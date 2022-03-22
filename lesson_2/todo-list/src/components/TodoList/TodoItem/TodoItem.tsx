@@ -5,7 +5,8 @@ interface IPropsTodoItem {
     id: string
     text: string,
     status: boolean,
-    removeTodoItem: Function
+    removeTodoItem: Function,
+    changeStatus: Function
 }
 
 interface IStateTodoItem {
@@ -27,9 +28,11 @@ class TodoItem extends React.Component<IPropsTodoItem> {
     clickTodoItem({ target }: MouseEvent): void {
         const { checked, styleText, styleButton } = this.state as IStateTodoItem;
         const { children } = target as HTMLLIElement;
+        const { changeStatus } = this.props as IPropsTodoItem;
+
         (children[0] as HTMLInputElement).checked = checked;
         (children[1] as HTMLLabelElement).style.textDecorationLine = styleText ? 'line-through' : 'none';
-        const button = document.querySelector(`.TodoList button:nth-child(${Number(children[0].id) * 2})`) as HTMLButtonElement;
+        const button = (target as HTMLLIElement).nextElementSibling as HTMLButtonElement;
         button.style.display = styleButton ? 'block' : 'none';
 
         this.setState({
@@ -37,16 +40,18 @@ class TodoItem extends React.Component<IPropsTodoItem> {
             styleText: !styleText,
             styleButton: !styleButton
         });
+    
+        changeStatus(String((target as HTMLLIElement).value));
     }
 
     render(): ReactElement {
         const { id, text, removeTodoItem } = this.props as IPropsTodoItem;
         return <>
-            <li className="TodoItem" onClick={this.clickTodoItem}>
+            <li className="TodoItem" value={id} onClick={this.clickTodoItem}>
                 <input type="checkbox" id={id}/>
                 <label htmlFor={id}>{text}</label>
             </li>
-            <button className={id} onClick={(): void => removeTodoItem(Number(id))}>Remove item</button>
+            <button className={id} onClick={(): void => removeTodoItem(id)}>Remove item</button>
         </>
     }
 }

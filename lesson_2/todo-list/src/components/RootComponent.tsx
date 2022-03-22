@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { createRef, ReactElement } from 'react';
 import { Header } from './Header/Header'
 import { AddTodoItem } from './AddTodoItem/AddTodoItem';
 import { TodoList } from './TodoList/TodoList';
@@ -15,6 +15,8 @@ class RootComponent extends React.Component {
         title: '',
         completed: false,
     }
+
+    private addNewItem = createRef<TodoList>();
  
     constructor(props: object) {
         super(props);
@@ -28,13 +30,15 @@ class RootComponent extends React.Component {
             title: data,
             completed: false,
         } as IStateRootComponent);
+        //@ts-expect-error
+        setTimeout((): void => this.addNewItem.current.addNewTodoItem());
     }
 
     render(): ReactElement {
         return <>
             <Header />
             <AddTodoItem updateData={this.updateData}/>
-            <TodoList {...this.state}/>
+            <TodoList ref={this.addNewItem} {...this.state}/>
         </>
     }
 }
