@@ -1,0 +1,40 @@
+.ListContact__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+}
+
+.ListContact__wrapper .title {
+    font-family: 'Montserrat';
+    text-align: center;
+    color: #039;
+    font-size: 24px;
+}
+
+.ListContact__wrapper .list__contacts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ListContact__wrapper .list__contacts li {
+    color: #669;
+    padding: 10px 15px 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat Light';
+    border-bottom: #e8edff 1px solid;
+}
+
+.list__contacts li button {
+    font-family: 'Montserrat Light';
+}
+
+.add__contact {
+    position: absolute;
+    top: 30px;
+    right: 15px;
+    font-family: 'Montserrat Light';
+}
