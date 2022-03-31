@@ -4,7 +4,8 @@ import './FromContact.css';
 type TPropsForm = {
     classForm: string,
     stateViewForm: Function,
-    updateContacts: Function
+    createNewContact: Function,
+    dataChangeItem: Array<string>
 }
 
 type TStateForm = {
@@ -28,7 +29,7 @@ class FormContact extends React.Component<TPropsForm> {
 
     onSubmitForm(event: ChangeEvent<HTMLFormElement>): void {
         event.preventDefault();
-        const { updateContacts } = this.props as TPropsForm;
+        const { createNewContact } = this.props as TPropsForm;
         const { name, surname, phone } = this.state as TStateForm;
         if (name && surname && phone) {
             const contact = {
@@ -36,7 +37,7 @@ class FormContact extends React.Component<TPropsForm> {
                 surname: surname,
                 phone: phone
             } as TStateForm;
-            updateContacts(contact);
+            createNewContact(contact);
         }
     }
 
@@ -56,7 +57,7 @@ class FormContact extends React.Component<TPropsForm> {
     }
 
     render(): ReactElement {
-        const { classForm, stateViewForm } = this.props as TPropsForm;
+        const { classForm, stateViewForm, dataChangeItem } = this.props as TPropsForm;
         const { name, surname, phone } = this.state as TStateForm;
         return <div className={classForm}>
             <div className="title">
@@ -73,6 +74,7 @@ class FormContact extends React.Component<TPropsForm> {
                     type="text"
                     value={name}
                     className="name"
+                    placeholder={dataChangeItem[0]}
                     onChange={this.onChangeInput}
                 />
                 <label htmlFor="surname">
@@ -82,6 +84,7 @@ class FormContact extends React.Component<TPropsForm> {
                     type="text"
                     value={surname}
                     className="surname"
+                    placeholder={dataChangeItem[1]}
                     onChange={this.onChangeInput}
                 />
                 <label htmlFor="phone">
@@ -91,6 +94,7 @@ class FormContact extends React.Component<TPropsForm> {
                     type="text"
                     value={phone}
                     className="phone"
+                    placeholder={dataChangeItem[2]}
                     onChange={this.onChangeInput}
                 />
                 <div className="buttons_container">

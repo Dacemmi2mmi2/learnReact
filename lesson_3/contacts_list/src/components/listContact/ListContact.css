@@ -1,8 +1,8 @@
 .ListContact__wrapper {
     position: absolute;
     top: 0;
-    left: calc(50% - 300px);
-    width: 600px;
+    left: calc(50% - 320px);
+    width: 640px;
     height: 100%;
     overflow: scroll;
 }
@@ -32,6 +32,11 @@
 
 .list__contacts li button {
     font-family: 'Montserrat Light';
+    width: 60px;
+}
+
+.list__contacts li button:first-child {
+    margin: 0 10px 0 0;
 }
 
 .add__contact {

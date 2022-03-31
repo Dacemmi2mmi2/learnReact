@@ -21,7 +21,8 @@ type TStateContact = {
         phone: string,
         id: string
     }>,
-    stateViewForm: boolean
+    stateViewForm: boolean,
+    dataChangeItem: Array<string>
 };
 
 class Contacts extends React.Component<TPropsContact, TStateContact> {
@@ -30,11 +31,15 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
         super(props);
         this.state = {
             listContacts: [],
-            stateViewForm: false
+            stateViewForm: false,
+            dataChangeItem: []
         }
         this.showHideFormAddContact = this.showHideFormAddContact.bind(this);
-        this.updateContactsList = this.updateContactsList.bind(this);
+        this.createNewContact = this.createNewContact.bind(this);
         this.deleteContact = this.deleteContact.bind(this);
+        this.getDataItemForUpdateItem = this.getDataItemForUpdateItem.bind(this);
+        this.resetDataForUpdateItem = this.resetDataForUpdateItem.bind(this);
+        this.updateContactOfList = this.updateContactOfList.bind(this);
     }
 
     showHideFormAddContact(): void {
@@ -42,7 +47,19 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
         this.setState({ stateViewForm: !stateViewForm });
     }
 
-    updateContactsList(contact: TContact): void {
+    resetDataForUpdateItem(): void {
+        this.setState({ dataChangeItem: [] });
+    }
+
+    getDataItemForUpdateItem(...args: Array<string>): void {
+        this.setState({ dataChangeItem: [...args] });
+    }
+
+    updateContactOfList(): void {
+
+    }
+
+    createNewContact(contact: TContact): void {
         const { listContacts } = this.state as TStateContact;
         this.id = this.id + 1;
         contact.id = String(this.id);
@@ -71,18 +88,21 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
     }
 
     render(): ReactElement {
-        const { listContacts, stateViewForm } = this.state as TStateContact;
+        const { listContacts, stateViewForm, dataChangeItem } = this.state as TStateContact;
         const classForm = stateViewForm ? 'FromContact__wrapper show' : 'FromContact__wrapper hide';
         return <>
             <ListContact 
                 contacts={listContacts}
                 stateViewForm={this.showHideFormAddContact}
                 deleteContact={this.deleteContact}
+                getDataItem={this.getDataItemForUpdateItem}
+                resetUpdateData={this.resetDataForUpdateItem}
             />
             <FormContact
                 classForm={classForm}
                 stateViewForm={this.showHideFormAddContact}
-                updateContacts={this.updateContactsList}
+                createNewContact={this.createNewContact}
+                dataChangeItem={dataChangeItem}
             />
         </>
     }

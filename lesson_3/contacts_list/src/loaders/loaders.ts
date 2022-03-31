@@ -24,6 +24,15 @@ export const addNewContact = (contact: {}): Promise<TDataContact> => fetch(urlAp
     }
 }).then(response => response.json());
 
-export const deleteItemContactList = (id: string) => fetch(`${urlApi}${id}`, {
+export const updateContact = (contact: {}): Promise<TDataContact> => fetch(urlApi, {
+    method: "PUT",
+    body: JSON.stringify(contact),
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
+}).then(response => response.json());
+
+export const deleteItemContactList = (id: string): Promise<TDataContact> => fetch(`${urlApi}${id}`, {
     method: "DELETE"
 }).then(respose => respose.json());

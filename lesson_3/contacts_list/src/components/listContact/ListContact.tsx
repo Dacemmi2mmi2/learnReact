@@ -17,12 +17,20 @@ type TPropsListContact = {
         id: string
     }>,
     stateViewForm: Function,
-    deleteContact: Function
+    deleteContact: Function,
+    getDataItem: Function,
+    resetUpdateData: Function
 }
 
 class ListContact extends React.Component<TPropsListContact> {
     render(): ReactElement {
-        const { contacts, stateViewForm, deleteContact } = this.props as TPropsListContact;
+        const {
+            contacts,
+            stateViewForm,
+            deleteContact,
+            getDataItem,
+            resetUpdateData
+        } = this.props as TPropsListContact;
         return <div className="ListContact__wrapper">
             <div className="title">
                 <p>List of contacts</p>
@@ -38,13 +46,20 @@ class ListContact extends React.Component<TPropsListContact> {
                             phone={phone}
                             id={id}
                             deleteContact={deleteContact}
+                            stateViewForm={stateViewForm}
+                            getDataItem={getDataItem}
                         />
                     })
                 }
             </ul>
             <button
                 className="add__contact"
-                onClick={(): void => stateViewForm()}
+                onClick={
+                    (): void => {
+                        stateViewForm();
+                        resetUpdateData();
+                    }
+                }
             >
                 add contact
             </button>
