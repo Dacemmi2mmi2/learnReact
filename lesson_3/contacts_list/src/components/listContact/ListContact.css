@@ -1,8 +1,10 @@
 .ListContact__wrapper {
     position: absolute;
     top: 0;
-    left: 0;
+    left: calc(50% - 300px);
     width: 600px;
+    height: 100%;
+    overflow: scroll;
 }
 
 .ListContact__wrapper .title {

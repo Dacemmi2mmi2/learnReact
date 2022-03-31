@@ -1,12 +1,20 @@
 import React, { ReactElement } from 'react';
 
-class ItemListContact extends React.Component {
+type TItemContactList = {
+    name: string,
+    surname: string,
+    phone: string,
+    id: string
+}
+
+class ItemListContact extends React.Component<TItemContactList> {
     render(): ReactElement {
+        const { name, surname, phone } = this.props as TItemContactList;
         return (
             <li>
-                <p className="name">name</p>
-                <p className="surname">surname</p>
-                <p className="phone">+1234556789098</p>
+                <p className="name">{ name }</p>
+                <p className="surname">{ surname }</p>
+                <p className="phone">{ phone }</p>
                 <button>delete contact</button>
             </li>
         )

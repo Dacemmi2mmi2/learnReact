@@ -1,31 +1,55 @@
 import React, { ReactElement } from 'react';
 import { FormContact } from '../formContact/FormContact';
 import { ListContact } from './../listContact/ListContact';
+import { getContactsList } from './../../loaders/loaders';
 
-// const urlApi: string = 'https://612687da3ab4100017a68fd8.mockapi.io/contacts';
-class Contacts extends React.Component {
-    render(): ReactElement {
-        return <>
-            <ListContact /> 
-            <FormContact />
-        </>
+type TPropsContact = {};
+type TStateContact = {
+    listContacts: Array<{
+        name: string,
+        surname: string,
+        phone: string,
+        id: string
+    }>,
+    stateViewForm: boolean
+};
+
+class Contacts extends React.Component<TPropsContact, TStateContact> {
+    constructor(props: TPropsContact) {
+        super(props);
+        this.state = {
+            listContacts: [],
+            stateViewForm: false
+        }
+        this.showHideFormAddContact = this.showHideFormAddContact.bind(this);
     }
 
-    // componentDidMount(): void {
-    //     fetch(urlApi, {
-    //         method: "GET",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*'
-    //         }
-    //     }).then(response => {
-    //         if (response.ok) {
-    //             response.json().then(data => console.log(data));
-    //         } else {
-    //             throw new Error('somthing went wrong');
-    //         }
-    //     });
-    // }
+    showHideFormAddContact(): void {
+        const { stateViewForm } = this.state as TStateContact;
+        this.setState({ stateViewForm: !stateViewForm });
+    }
+
+    componentDidMount(): void {
+        getContactsList()
+        .then((dataContacts): void => {
+            this.setState({ listContacts: dataContacts });
+        });
+    }
+
+    render(): ReactElement {
+        const { listContacts, stateViewForm } = this.state as TStateContact;
+        const classForm = stateViewForm ? 'FromContact__wrapper show' : 'FromContact__wrapper hide';
+        return <>
+            <ListContact 
+                contacts={listContacts}
+                stateViewForm={this.showHideFormAddContact}
+            />
+            <FormContact
+                classForm={classForm}
+                stateViewForm={this.showHideFormAddContact}
+            />
+        </>
+    }
 }
 
 export { Contacts }
