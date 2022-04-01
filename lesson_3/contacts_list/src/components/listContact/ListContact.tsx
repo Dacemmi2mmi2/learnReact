@@ -56,7 +56,7 @@ class ListContact extends React.Component<TPropsListContact> {
                 className="add__contact"
                 onClick={
                     (): void => {
-                        stateViewForm();
+                        stateViewForm('add');
                         resetUpdateData();
                     }
                 }

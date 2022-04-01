@@ -53,3 +53,15 @@
     font-size: 15px;
     margin: 5px 0 0 20px;
 }
+
+.FromContact__wrapper .fill__fields {
+    font-family: 'Montserrat Light';
+    font-size: 17px;
+    position: absolute;
+    bottom: 32px;
+    right: 30px;
+    margin: 0;
+    width: 120px;
+    color: red;
+    user-select: none;
+}

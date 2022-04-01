@@ -22,7 +22,7 @@ class ItemListContact extends React.Component<TItemContactList> {
             getDataItem
         } = this.props as TItemContactList;
         return (
-            <li>
+            <li id={id}>
                 <p className="name">{ name }</p>
                 <p className="surname">{ surname }</p>
                 <p className="phone">{ phone }</p>
@@ -30,8 +30,8 @@ class ItemListContact extends React.Component<TItemContactList> {
                     <button onClick={(): void => { deleteContact(id) }}>delete</button>
                     <button onClick={
                         (): void => {
-                            stateViewForm();
-                            getDataItem(name, surname, phone);
+                            stateViewForm('update');
+                            getDataItem(name, surname, phone, id);
                         }
                     }>
                         edit

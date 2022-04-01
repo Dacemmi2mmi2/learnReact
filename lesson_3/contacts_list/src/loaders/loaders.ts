@@ -24,7 +24,7 @@ export const addNewContact = (contact: {}): Promise<TDataContact> => fetch(urlAp
     }
 }).then(response => response.json());
 
-export const updateContact = (contact: {}): Promise<TDataContact> => fetch(urlApi, {
+export const updateContact = (contact: {}, id: string): Promise<TDataContact> => fetch(`${urlApi}${id}`, {
     method: "PUT",
     body: JSON.stringify(contact),
     headers: {

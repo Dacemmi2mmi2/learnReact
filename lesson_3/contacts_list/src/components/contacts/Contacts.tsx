@@ -3,6 +3,7 @@ import { FormContact } from '../formContact/FormContact';
 import { ListContact } from './../listContact/ListContact';
 import {
     getContactsList,
+    updateContact,
     addNewContact,
     deleteItemContactList
 } from './../../loaders/loaders';
@@ -22,7 +23,9 @@ type TStateContact = {
         id: string
     }>,
     stateViewForm: boolean,
-    dataChangeItem: Array<string>
+    dataChangeItem: Array<string>,
+    isUpdateContact: boolean,
+    idUpdateItem: string
 };
 
 class Contacts extends React.Component<TPropsContact, TStateContact> {
@@ -32,7 +35,9 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
         this.state = {
             listContacts: [],
             stateViewForm: false,
-            dataChangeItem: []
+            dataChangeItem: [],
+            isUpdateContact: false,
+            idUpdateItem: ''
         }
         this.showHideFormAddContact = this.showHideFormAddContact.bind(this);
         this.createNewContact = this.createNewContact.bind(this);
@@ -42,9 +47,13 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
         this.updateContactOfList = this.updateContactOfList.bind(this);
     }
 
-    showHideFormAddContact(): void {
+    showHideFormAddContact(stateContact: string): void {
+        const isUpdateContact = stateContact === 'update' ? true : false;
         const { stateViewForm } = this.state as TStateContact;
-        this.setState({ stateViewForm: !stateViewForm });
+        this.setState({
+            stateViewForm: !stateViewForm,
+            isUpdateContact: isUpdateContact
+        });
     }
 
     resetDataForUpdateItem(): void {
@@ -52,11 +61,20 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
     }
 
     getDataItemForUpdateItem(...args: Array<string>): void {
-        this.setState({ dataChangeItem: [...args] });
+        this.setState({
+            dataChangeItem: [...args],
+            idUpdateItem: args[args.length - 1]
+        });
     }
 
-    updateContactOfList(): void {
-
+    updateContactOfList(contact: TContact): void {
+        const { listContacts } = this.state as TStateContact;
+        updateContact(contact, (contact.id as string))
+        .then((dataUpdate): void => {
+            this.setState({
+                listContacts: listContacts.map(item => item.id !== dataUpdate.id ? item : dataUpdate)
+            });
+        }); 
     }
 
     createNewContact(contact: TContact): void {
@@ -88,7 +106,13 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
     }
 
     render(): ReactElement {
-        const { listContacts, stateViewForm, dataChangeItem } = this.state as TStateContact;
+        const {
+            listContacts,
+            stateViewForm,
+            dataChangeItem,
+            isUpdateContact,
+            idUpdateItem
+        } = this.state as TStateContact;
         const classForm = stateViewForm ? 'FromContact__wrapper show' : 'FromContact__wrapper hide';
         return <>
             <ListContact 
@@ -102,7 +126,10 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
                 classForm={classForm}
                 stateViewForm={this.showHideFormAddContact}
                 createNewContact={this.createNewContact}
+                updateContact={this.updateContactOfList}
                 dataChangeItem={dataChangeItem}
+                isUpdateContact={isUpdateContact}
+                idUpdateItem={idUpdateItem}
             />
         </>
     }
