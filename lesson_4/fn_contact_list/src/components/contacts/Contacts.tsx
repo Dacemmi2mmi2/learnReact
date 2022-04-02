@@ -77,7 +77,7 @@ const Contacts = (): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const classForm = stateViewForm ? 'FromContact__wrapper show' : 'FromContact__wrapper hide';
+    const classForm = stateViewForm ? 'FromContact__page show' : 'FromContact__page hide';
     return (
         <>
             <ListContact 
