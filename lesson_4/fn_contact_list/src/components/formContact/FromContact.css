@@ -1,0 +1,67 @@
+.FromContact__wrapper {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 300px);
+    width: 600px;
+    z-index: 100;
+    padding: 0 0 30px 0;
+    background-color: white;
+    box-shadow: 10px 10px 50px gray;
+    transition: top .5s linear;
+}
+
+.hide {
+    top: -100%;
+}
+
+.show {
+    top: 0;
+}
+
+.FromContact__wrapper .title {
+    font-family: 'Montserrat';
+    text-align: center;
+    color: #039;
+    font-size: 24px;
+}
+
+.FromContact__wrapper form label {
+    font-family: 'Montserrat Light';
+    color: #669;
+    margin: 0 0 0 30px;
+    font-size: 18px;
+}
+
+.FromContact__wrapper form input {
+    padding: 0;
+    box-sizing: border-box;
+    width: 540px;
+    margin: 5px 30px 15px 30px;
+    font-family: 'Montserrat Light';
+    font-size: 18px;
+}
+
+.FromContact__wrapper button.save {
+    font-family: 'Montserrat Light';
+    font-size: 15px;
+    margin: 5px 0 0 30px;
+}
+
+.FromContact__wrapper button.cancel,
+.FromContact__wrapper button.hide__form {
+    font-family: 'Montserrat Light';
+    font-size: 15px;
+    margin: 5px 0 0 20px;
+}
+
+.FromContact__wrapper .fill__fields {
+    font-family: 'Montserrat Light';
+    font-size: 17px;
+    position: absolute;
+    bottom: 32px;
+    right: 30px;
+    margin: 0;
+    width: 120px;
+    color: red;
+    user-select: none;
+}
