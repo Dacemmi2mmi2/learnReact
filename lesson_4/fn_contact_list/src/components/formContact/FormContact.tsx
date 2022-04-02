@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement } from 'react';
+import { ChangeEvent, ReactElement, useState } from 'react';
 import './FromContact.css';
 
 type TPropsForm = {
@@ -12,28 +12,13 @@ type TPropsForm = {
     idUpdateItem: string
 }
 
-type TStateForm = {
-    name: string,
-    surname: string,
-    phone: string,
-    viewFillFields: string
-}
+const FormContact = (props: TPropsForm): ReactElement => {
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [phone, setPhone] = useState('');
+    const [viewFillFields, setViewFillFields] = useState('none');
 
-class FormContact extends React.Component<TPropsForm> {
-    constructor(props: TPropsForm) {
-        super(props);
-        this.state = {
-            name: '',
-            surname: '',
-            phone: '',
-            viewFillFields: "none"
-        }
-        this.onChangeInput = this.onChangeInput.bind(this);
-        this.canselInputData = this.canselInputData.bind(this);
-        this.onSubmitForm = this.onSubmitForm.bind(this);
-    }
-
-    onSubmitForm(event: ChangeEvent<HTMLFormElement>): void {
+    const onSubmitForm = (event: ChangeEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const {
             createNewContact,
@@ -41,8 +26,7 @@ class FormContact extends React.Component<TPropsForm> {
             isUpdateContact,
             dataChangeItem,
             idUpdateItem
-        } = this.props as TPropsForm;
-        const { name, surname, phone } = this.state as TStateForm;
+        } = props as TPropsForm;
         if (name && surname && phone) {
             !isUpdateContact && createNewContact({
                 name: name,
@@ -54,45 +38,45 @@ class FormContact extends React.Component<TPropsForm> {
                 surname: surname,
                 phone: phone,
                 id: idUpdateItem
-            })
-            this.setState({
-                name: '',
-                surname: '',
-                phone: '',
-                viewFillFields: "none"
             });
+            setName('');
+            setSurname('');
+            setPhone('');
+            setViewFillFields('none');
             dataChangeItem.length = 0;
         } else {
-            this.setState({ viewFillFields: "block" });
+            setViewFillFields('block');
         }
     }
 
-    onChangeInput({ target }: ChangeEvent<HTMLInputElement>): void {
+    const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>): void => {
         const { classList, value } = target;
-        this.setState({ [classList[0]]: value });
-    }
-
-    canselInputData(): void {
-        this.setState({
-            name: '',
-            surname: '',
-            phone: ''
-        });
-    }
-
-    render(): ReactElement {
-        const { classForm, stateViewForm, dataChangeItem } = this.props as TPropsForm;
-        const { name, surname, phone, viewFillFields } = this.state as TStateForm;
-        const placeholders = {
-            name: dataChangeItem[0],
-            surname: dataChangeItem[1],
-            phone: dataChangeItem[2]
+        const classesInputs: { [key: string]: Function } = {
+            name: setName,
+            surname: setSurname,
+            phone: setPhone,
         }
-        return <div className={classForm}>
+        classesInputs[classList[0]](value);
+    }
+
+    const canselInputData = (): void => {
+        setName('');
+        setSurname('');
+        setPhone('');
+    }
+    
+    const { classForm, stateViewForm, dataChangeItem } = props as TPropsForm;
+    const placeholders = {
+        name: dataChangeItem[0],
+        surname: dataChangeItem[1],
+        phone: dataChangeItem[2]
+    }
+    return (
+        <div className={classForm}>
             <div className="title">
                 <p>Field for add contact</p>
             </div>
-            <form onSubmit={this.onSubmitForm}>
+            <form onSubmit={onSubmitForm}>
                 <label htmlFor="name">
                     name
                 </label>
@@ -101,7 +85,7 @@ class FormContact extends React.Component<TPropsForm> {
                     value={name}
                     placeholder={placeholders.name}
                     className="name"
-                    onChange={this.onChangeInput}
+                    onChange={onChangeInput}
                 />
                 <label htmlFor="surname">
                     surname
@@ -111,7 +95,7 @@ class FormContact extends React.Component<TPropsForm> {
                     value={surname}
                     placeholder={placeholders.surname}
                     className="surname"
-                    onChange={this.onChangeInput}
+                    onChange={onChangeInput}
                 />
                 <label htmlFor="phone">
                     phone
@@ -121,7 +105,7 @@ class FormContact extends React.Component<TPropsForm> {
                     value={phone}
                     placeholder={placeholders.phone}
                     className="phone"
-                    onChange={this.onChangeInput}
+                    onChange={onChangeInput}
                 />
                 <div className="buttons_container">
                     <button
@@ -133,7 +117,7 @@ class FormContact extends React.Component<TPropsForm> {
                     <button
                         type="button"
                         className="cancel"
-                        onClick={this.canselInputData}
+                        onClick={canselInputData}
                     >
                         cancel input
                     </button>
@@ -153,7 +137,7 @@ class FormContact extends React.Component<TPropsForm> {
                 </div>
             </form>
         </div>
-    }
+    )
 }
 
 export { FormContact }

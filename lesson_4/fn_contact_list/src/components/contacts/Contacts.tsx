@@ -74,7 +74,7 @@ class Contacts extends React.Component<TPropsContact, TStateContact> {
             this.setState({
                 listContacts: listContacts.map(item => item.id !== dataUpdate.id ? item : dataUpdate)
             });
-        }); 
+        });
     }
 
     createNewContact(contact: TContact): void {

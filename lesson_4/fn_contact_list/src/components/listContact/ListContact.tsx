@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { ItemListContact } from './../itemListContact/ItemListContact';
 import './ListContact.css';
 
@@ -30,39 +30,41 @@ const ListContact = (props: TPropsListContact): ReactElement => {
         getDataItem,
         resetUpdateData
     } = props as TPropsListContact;
-    return <div className="ListContact__wrapper">
-        <div className="title">
-            <p>List of contacts</p>
-        </div>
-        <ul className="list__contacts">
-            {
-                contacts.map((item: TItemContactList): ReactElement => {
-                    const { name, surname, phone, id } = item as TItemContactList;
-                    return <ItemListContact
-                        key={id}
-                        name={name}
-                        surname={surname}
-                        phone={phone}
-                        id={id}
-                        deleteContact={deleteContact}
-                        stateViewForm={stateViewForm}
-                        getDataItem={getDataItem}
-                    />
-                })
-            }
-        </ul>
-        <button
-            className="add__contact"
-            onClick={
-                (): void => {
-                    stateViewForm('add');
-                    resetUpdateData();
+    return (
+        <div className="ListContact__wrapper">
+            <div className="title">
+                <p>List of contacts</p>
+            </div>
+            <ul className="list__contacts">
+                {
+                    contacts.map((item: TItemContactList): ReactElement => {
+                        const { name, surname, phone, id } = item as TItemContactList;
+                        return <ItemListContact
+                            key={id}
+                            name={name}
+                            surname={surname}
+                            phone={phone}
+                            id={id}
+                            deleteContact={deleteContact}
+                            stateViewForm={stateViewForm}
+                            getDataItem={getDataItem}
+                        />
+                    })
                 }
-            }
-        >
-            add contact
-        </button>
-    </div>
+            </ul>
+            <button
+                className="add__contact"
+                onClick={
+                    (): void => {
+                        stateViewForm('add');
+                        resetUpdateData();
+                    }
+                }
+            >
+                add contact
+            </button>
+        </div>
+    )
 }
 
 export { ListContact }
