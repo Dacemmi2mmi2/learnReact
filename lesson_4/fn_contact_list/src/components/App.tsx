@@ -3,9 +3,7 @@ import { Contacts } from './contacts/Contacts';
 
 
 function App(): ReactElement {
-  return <>
-    <Contacts />
-  </>
+  return <Contacts />
 }
 
 export { App };
