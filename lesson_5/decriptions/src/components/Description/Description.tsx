@@ -12,7 +12,7 @@ const Description = (props: IDescriptionComponentProps): ReactElement => {
     const onCahgeTextArea = ({ target }: ChangeEvent<HTMLTextAreaElement>): void => {
         description = target.value as string;
     }
-    
+
     return (
         <div className="Description">
             <textarea

@@ -13,7 +13,7 @@ const ListDescriptions = (): ReactElement => {
     } = useAsync(getDataApi, []);
 
     const updateDescription = useCallback((id: string, description: string): void => {
-        updateItem(id, { id, description})
+        updateItem(id, { id, description })
             .then((data: IdataDescription): void => {
                 setData(listDescriptions.map(item => item.id !== data.id ? item : data));
             })
