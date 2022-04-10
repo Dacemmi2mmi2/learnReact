@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ListDescriptions } from './ListDescriptions/ListDescriptions';
+import { ListStickers } from './ListStickers/ListStickers';
 
 function App(): ReactElement {
-  return <ListDescriptions />;
+  return <ListStickers />;
 }
 
 export { App };

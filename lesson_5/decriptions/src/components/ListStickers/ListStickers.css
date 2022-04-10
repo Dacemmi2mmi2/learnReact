@@ -1,4 +1,4 @@
-.ListDescriptions {
+.ListStickers {
     width: 540px;
     padding: 0 0 0 30px;
 }
@@ -7,7 +7,14 @@
     font-family: 'Montserrat Medium';
 }
 
-.Description {
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Sticker {
     width: 100%;
     margin: 0 0 30px 0;
     padding: 30px;
@@ -31,7 +38,8 @@
     height: 140px;
 }
 
-.btn__delete {
+.btn__delete,
+.btn__add {
     border-radius: 5px;
     border: solid 1px gray;
     padding: 5px 10px 5px 10px;

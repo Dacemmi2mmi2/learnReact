@@ -1,11 +1,11 @@
-export interface IDescriptionComponentProps {
+export interface IStickerComponentProps {
     id: string,
     description: string,
-    deleteDescription: Function,
-    updateDescription: Function
+    deleteSticker: Function,
+    updateStickers: Function
 }
 
-export interface IdataDescription {
+export interface IdataSticker {
     description: string,
     id: string,
     height?: number,
@@ -15,11 +15,11 @@ export interface IdataDescription {
 }
 
 export interface IlistDescriptons {
-    listDescriptions: IdataDescription[]
+    listDescriptions: IdataSticker[]
 }
 
 export interface IuseAsync {
-    data: IdataDescription[],
+    data: IdataSticker[],
     setData: Function,
     getData: Function
 }

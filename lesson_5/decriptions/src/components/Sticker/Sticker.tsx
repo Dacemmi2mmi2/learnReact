@@ -1,30 +1,30 @@
 import { ChangeEvent, ReactElement } from 'react';
-import { IDescriptionComponentProps } from '../../services/interfaces';
+import { IStickerComponentProps } from '../../services/interfaces';
 
-const Description = (props: IDescriptionComponentProps): ReactElement => {
+const Sticker = (props: IStickerComponentProps): ReactElement => {
     let {
         id,
         description,
-        deleteDescription,
-        updateDescription
-    } = props as IDescriptionComponentProps;
+        deleteSticker,
+        updateStickers
+    } = props as IStickerComponentProps;
 
     const onCahgeTextArea = ({ target }: ChangeEvent<HTMLTextAreaElement>): void => {
         description = target.value as string;
     }
 
     return (
-        <div className="Description">
+        <div className="Sticker">
             <textarea
                 className="field__text"
                 id={id}
                 defaultValue={description}
                 onChange={onCahgeTextArea}
-                onBlur={(): void => updateDescription(id, description)}
+                onBlur={(): void => updateStickers(id, description)}
             ></textarea>
             <button
                 className="btn__delete"
-                onClick={(): void => deleteDescription(id)}
+                onClick={(): void => deleteSticker(id)}
             >
                 delete
             </button>
@@ -32,4 +32,4 @@ const Description = (props: IDescriptionComponentProps): ReactElement => {
     );
 }
 
-export { Description };
+export { Sticker };
