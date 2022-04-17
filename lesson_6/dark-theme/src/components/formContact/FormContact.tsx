@@ -1,66 +1,21 @@
-import {
-    ChangeEvent,
-    ReactElement,
-    useState
-} from 'react';
+import { ReactElement } from 'react';
+import { useFormContact } from './form-contact-logic';
 import { IPropsForm } from '../../servises/interfaces';
 import './FromContact.css';
 
 export const FormContact = (props: IPropsForm): ReactElement => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [phone, setPhone] = useState('');
-    const [viewFillFields, setViewFillFields] = useState('none');
+    const {
+        name,
+        surname,
+        phone,
+        viewFillFields,
+        onChangeInput,
+        onSubmitForm,
+        canselInputData
+    } = useFormContact(props);
 
-    const onSubmitForm = (event: ChangeEvent<HTMLFormElement>): void => {
-        event.preventDefault();
-        const {
-            createNewContact,
-            updateContact,
-            isUpdateContact,
-            dataChangeItem,
-            idUpdateItem
-        } = props as IPropsForm;
-        if (name && surname && phone) {
-            !isUpdateContact && createNewContact({
-                name: name,
-                surname: surname,
-                phone: phone
-            });
-            isUpdateContact && updateContact({
-                name: name,
-                surname: surname,
-                phone: phone,
-                id: idUpdateItem
-            });
-            setName('');
-            setSurname('');
-            setPhone('');
-            setViewFillFields('none');
-            dataChangeItem.length = 0;
-        } else {
-            setViewFillFields('block');
-        }
-    }
-
-    const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-        const { classList, value } = target;
-        const classesInputs: { [key: string]: Function } = {
-            name: setName,
-            surname: setSurname,
-            phone: setPhone,
-        }
-        classesInputs[classList[0]](value);
-    }
-
-    const canselInputData = (): void => {
-        setName('');
-        setSurname('');
-        setPhone('');
-    }
-    
     const { classForm, stateViewForm, dataChangeItem } = props as IPropsForm;
-    const placeholders = {
+    const placeholders: { [key: string]: string } = {
         name: dataChangeItem[0],
         surname: dataChangeItem[1],
         phone: dataChangeItem[2]

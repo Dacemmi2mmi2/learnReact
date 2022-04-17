@@ -1,3 +1,9 @@
+import {
+    FormEventHandler,
+    ChangeEventHandler,
+    MouseEventHandler
+} from "react"
+
 export interface IContact {
     name: string,
     surname: string,
@@ -65,4 +71,14 @@ export interface IUseContactsHook {
     getDataItemForUpdateItem: Function,
     resetDataForUpdateItem: Function,
     showHideFormAddContact: Function
+}
+
+export interface IUseFormContactHook {
+    name: string,
+    surname: string,
+    phone: string,
+    viewFillFields: string,
+    onChangeInput: ChangeEventHandler<HTMLInputElement>,
+    onSubmitForm: FormEventHandler<HTMLFormElement>,
+    canselInputData: MouseEventHandler<HTMLButtonElement>
 }

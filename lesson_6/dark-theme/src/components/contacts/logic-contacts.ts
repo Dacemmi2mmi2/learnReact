@@ -2,7 +2,7 @@ import {
     useState,
     useEffect,
     SetStateAction
-} from "react";
+} from 'react';
 import {
     getContactsList,
     updateContact,
@@ -13,9 +13,9 @@ import {
     IContact,
     IDataContact, 
     IUseContactsHook
-} from "../../servises/interfaces";
+} from '../../servises/interfaces';
 
-export const useContacts = () => {
+export const useContacts = (): IUseContactsHook => {
     const [listContacts, setListContacts] = useState([] as IDataContact[]);
     const [stateViewForm, setStateViewForm] = useState(false);
     const [dataChangeItem, setDataChangeItem] = useState([] as string[]);
@@ -76,5 +76,5 @@ export const useContacts = () => {
         getDataItemForUpdateItem,
         resetDataForUpdateItem,
         showHideFormAddContact
-    } as IUseContactsHook;
+    };
 }
