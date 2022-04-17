@@ -49,5 +49,5 @@ export const ItemListContact = (props: IPropsItemContactList): ReactElement => {
                 </button>
             </div>
         </li>
-    )
+    );
 }

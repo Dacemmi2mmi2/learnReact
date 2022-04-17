@@ -26,53 +26,56 @@ export const ListContact = (props: IPropsListContact): ReactElement => {
         resetUpdateData,
         changeContext
     } = props as IPropsListContact;
+
     return (
         <div
-            className="ListContact__wrapper"
+            className="ListContact__page"
             style={valueContext ? undefined : backgroundStyle}
         >
-            <div
-                className="title"
-                style={valueContext ? undefined : titleStyle}
-            >
-                <p>List of contacts</p>
-            </div>
-            <ul className="list__contacts">
-                {
-                    contacts.map((item: IItemContactList): ReactElement => {
-                        const { name, surname, phone, id } = item as IItemContactList;
-                        return <ItemListContact
-                            key={id}
-                            name={name}
-                            surname={surname}
-                            phone={phone}
-                            id={id}
-                            deleteContact={deleteContact}
-                            stateViewForm={stateViewForm}
-                            getDataItem={getDataItem}
-                        />
-                    })
-                }
-            </ul>
-            <button
-                className="add__contact"
-                onClick={
-                    (): void => {
-                        stateViewForm('add');
-                        resetUpdateData();
+            <div className="ListContact__wrapper">
+                <div
+                    className="title"
+                    style={valueContext ? undefined : titleStyle}
+                >
+                    <p>List of contacts</p>
+                </div>
+                <ul className="list__contacts">
+                    {
+                        contacts.map((item: IItemContactList): ReactElement => {
+                            const { name, surname, phone, id } = item as IItemContactList;
+                            return <ItemListContact
+                                key={id}
+                                name={name}
+                                surname={surname}
+                                phone={phone}
+                                id={id}
+                                deleteContact={deleteContact}
+                                stateViewForm={stateViewForm}
+                                getDataItem={getDataItem}
+                            />
+                        })
                     }
-                }
-                style={valueContext ? undefined : buttonsStyle}
-            >
-                add contact
-            </button>
-            <button
-                className='change__theme'
-                onClick={(): void => { changeContext() }}
-                style={valueContext ? undefined : buttonsStyle}
-            >
-                change theme
-            </button>
+                </ul>
+                <button
+                    className="add__contact"
+                    onClick={
+                        (): void => {
+                            stateViewForm('add');
+                            resetUpdateData();
+                        }
+                    }
+                    style={valueContext ? undefined : buttonsStyle}
+                >
+                    add contact
+                </button>
+                <button
+                    className='change__theme'
+                    onClick={(): void => { changeContext() }}
+                    style={valueContext ? undefined : buttonsStyle}
+                >
+                    change theme
+                </button>
+            </div>
         </div>
-    )
+    );
 }
