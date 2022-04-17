@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat Light';
+  src: url('./fonts/Montserrat-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url('./fonts/Montserrat-Medium.ttf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
