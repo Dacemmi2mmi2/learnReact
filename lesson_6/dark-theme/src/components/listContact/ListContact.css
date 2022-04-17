@@ -45,3 +45,10 @@
     right: 15px;
     font-family: 'Montserrat Light';
 }
+
+.change__theme {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    font-family: 'Montserrat Light';
+}

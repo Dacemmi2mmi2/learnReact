@@ -35,7 +35,8 @@ export interface IPropsListContact {
     stateViewForm: Function,
     deleteContact: Function,
     getDataItem: Function,
-    resetUpdateData: Function
+    resetUpdateData: Function,
+    changeContext: Function
 }
 
 export interface IPropsForm {
@@ -46,7 +47,7 @@ export interface IPropsForm {
     dataChangeItem: Array<string>,
     isUpdateContact: boolean,
     id?: string,
-    idUpdateItem: string
+    idUpdateItem: string,
 }
 
 export interface IPropsItemContactList {
@@ -60,11 +61,13 @@ export interface IPropsItemContactList {
 }
 
 export interface IUseContactsHook {
+    context: boolean,
     listContacts: IDataContact[],
     stateViewForm: boolean,
     dataChangeItem: string[],
     isUpdateContact: boolean,
     idUpdateItem: string,
+    changeContext: Function,
     deleteContact: Function,
     createNewContact: Function,
     updateContactOfList: Function,

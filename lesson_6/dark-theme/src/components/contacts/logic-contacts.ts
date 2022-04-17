@@ -1,7 +1,7 @@
 import {
     useState,
     useEffect,
-    SetStateAction
+    SetStateAction,
 } from 'react';
 import {
     getContactsList,
@@ -21,6 +21,11 @@ export const useContacts = (): IUseContactsHook => {
     const [dataChangeItem, setDataChangeItem] = useState([] as string[]);
     const [isUpdateContact, setIsUpdateContact] = useState(false);
     const [idUpdateItem, setIdUpdateItem] = useState('');
+    const [context, setContext] = useState(true);
+
+    const changeContext = (): void => {
+        setContext(!context);
+    }
 
     const showHideFormAddContact = (stateContact: string): void =>{
         const updateContact = stateContact === 'update' ? true : false;
@@ -65,11 +70,13 @@ export const useContacts = (): IUseContactsHook => {
     }
 
     return {
+        context,
         listContacts,
         stateViewForm,
         dataChangeItem,
         isUpdateContact,
         idUpdateItem,
+        changeContext,
         deleteContact,
         createNewContact,
         updateContactOfList,
