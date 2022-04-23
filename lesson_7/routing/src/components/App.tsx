@@ -1,8 +1,9 @@
 import { ReactElement } from 'react';
+import { AdminPanel } from './AdminPanel/AdminPanel';
 
-export function App(): ReactElement {
+export const App = (): ReactElement => {
   return (
-    <></>
+    <AdminPanel />
   );
 }
 
