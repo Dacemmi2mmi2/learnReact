@@ -1,0 +1,26 @@
+.card__user {
+    font-family: 'Montserrat Light';
+    background-color: #212529;
+    border: solid 1px #a1a1a4;
+    border-radius: 10px;
+    padding: 0 10px 10px 10px;
+    color: white;
+    margin: 0 0 20px 0 ;
+}
+
+.card__user ul {
+    list-style-type: none;
+}
+
+.card__user ul li {
+    line-height: 1.4;
+}
+
+.card__user p {
+    margin: 10px 0 0 0;
+}
+
+.card__user .subtitle {
+    font-size: 19px;
+    color: white;
+}

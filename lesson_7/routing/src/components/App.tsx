@@ -1,9 +1,12 @@
 import { ReactElement } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { AdminPanel } from './AdminPanel/AdminPanel';
 
 export const App = (): ReactElement => {
   return (
-    <AdminPanel />
+    <BrowserRouter>
+      <AdminPanel />
+    </BrowserRouter>
   );
 }
 

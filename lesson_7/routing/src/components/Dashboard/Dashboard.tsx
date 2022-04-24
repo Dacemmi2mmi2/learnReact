@@ -1,4 +1,7 @@
-import { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
+import { ReactElement, useEffect } from 'react';
+import { getApi } from '../../services/loaders';
+import { linkStyles } from '../../services/additionalStyles';
 import './Dashboard.css';
 
 export const Dashboard = (): ReactElement => {
@@ -6,8 +9,22 @@ export const Dashboard = (): ReactElement => {
         <div className="page__container">
             <div className="list__container">
                 <ul>
-                    <li>Users</li>
-                    <li>Albums</li>
+                    <li>
+                        <Link
+                            to='/users'
+                            style={linkStyles}
+                        >
+                            Users
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to='/albums'
+                            style={linkStyles}
+                        >
+                            Albums
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className="data__container">
