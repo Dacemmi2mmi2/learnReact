@@ -1,5 +1,9 @@
-import { ReactElement } from "react";
-import { Iaddres, Icompany, IUserData, IUserProps } from "../../services/interfaces";
+import { ReactElement } from 'react';
+import {
+    Iaddres,
+    Icompany,
+    IUserData,
+    IUserProps } from '../../services/interfaces';
 import './User.css';
 
 export const User = ({ dataUser }: IUserProps): ReactElement => {
@@ -63,5 +67,5 @@ export const User = ({ dataUser }: IUserProps): ReactElement => {
                 </ul>
             </div>
         </div>
-    )
+    );
 }

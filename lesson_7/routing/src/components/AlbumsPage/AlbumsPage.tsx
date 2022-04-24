@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { ReactElement } from 'react';
-import { User } from '../User/User';
-import { useUsers } from './usersPageHook';
-import {
-    IUserData,
-    IUsersPageHook
-} from '../../services/interfaces';
+import { useAlbumsPage } from './albumsPageHook';
+import { Album } from '../Album/Album';
 import { linkStyles } from '../../services/additionalStyles';
+import {
+    IAlbumsData,
+    IAlbumsPageHook
+} from '../../services/interfaces';
 
-export const UsersPage = (): ReactElement => {
-    const { listUsers } = useUsers() as IUsersPageHook;
+export const AlbumsPage = (): ReactElement => {
+    const { listAlbums } = useAlbumsPage() as IAlbumsPageHook;
 
     return (
         <div className="page__container">
@@ -25,23 +25,23 @@ export const UsersPage = (): ReactElement => {
                     </li>
                     <li>
                         <Link
-                            to='/albums'
+                            to='/users'
                             style={linkStyles}
                         >
-                            Albums
+                            Users
                         </Link>
                     </li>
                 </ul>
             </div>
             <div className="data__container">
-                <h1 className='title__page'>Users</h1>
+                <h1 className='title__page'>Albums</h1>
                 <div className="data__page">
                     {
-                        listUsers.map((item: IUserData, index: number): ReactElement => {
+                        listAlbums.map((item: IAlbumsData, index: number): ReactElement => {
                             return (
-                                <User
+                                <Album
                                     key={index}
-                                    dataUser={item}
+                                    dataAlbum={item}
                                 />
                             )
                         })

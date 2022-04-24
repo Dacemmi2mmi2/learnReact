@@ -30,3 +30,22 @@ export interface IUserProps {
     dataUser: IUserData,
     key: number
 }
+
+export interface IUsersPageHook {
+    listUsers: IUserData[] | []
+}
+
+export interface IAlbumsData {
+    id: number,
+    title: string,
+    userId: number
+}
+
+export interface IAlbumProps {
+    dataAlbum: IAlbumsData,
+    key: number
+}
+
+export interface IAlbumsPageHook {
+    listAlbums: IAlbumsData[] | []
+}

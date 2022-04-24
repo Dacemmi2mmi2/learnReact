@@ -1,0 +1,9 @@
+.album__card {
+    font-family: 'Montserrat Light';
+    background-color: #212529;
+    border: solid 1px #a1a1a4;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    color: white;
+    margin: 0 0 20px 0;
+}

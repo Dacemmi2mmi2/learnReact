@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Dashboard } from '../Dashboard/Dashboard';
+import { DashboardPage } from '../DashboardPage/DashboardPage';
 import { UsersPage } from '../UsersPage/UsersPage';
-import { Albums } from '../Albums/Albums';
+import { AlbumsPage } from '../AlbumsPage/AlbumsPage';
 import './AdminPanel.css';
 
 export const AdminPanel = (): ReactElement => {
@@ -10,7 +10,7 @@ export const AdminPanel = (): ReactElement => {
         <Routes>
             <Route
                 path='/'
-                element={<Dashboard />}
+                element={<DashboardPage />}
             />
             <Route
                 path='/users'
@@ -18,8 +18,8 @@ export const AdminPanel = (): ReactElement => {
             />
             <Route
                 path='/albums'
-                element={<Albums />}
+                element={<AlbumsPage />}
             />
         </Routes>
-    )
+    );
 }
