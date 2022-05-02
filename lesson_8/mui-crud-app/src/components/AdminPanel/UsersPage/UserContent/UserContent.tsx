@@ -1,15 +1,20 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { useUserContent } from './userContentLogic';
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
+import {
+    Button,
+    ButtonGroup
+} from '@mui/material';
+import { Link } from 'react-router-dom';
 import {
     IUserData,
     IUserContentHook
 } from '../../../../services/interfaces';
+import { linkStyles } from '../../../../services/additionalStyles';
 
 export const UserContent = (): ReactElement => {
     const {
@@ -32,9 +37,27 @@ export const UserContent = (): ReactElement => {
     return (
         <Box>
             <Box sx={{ mb: 1 }}>
-                <Button onClick={(): void => handleExpandClick()}>
-                    {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
-                </Button>
+                <ButtonGroup variant='contained'>
+                    <Button onClick={(): void => handleExpandClick()}>
+                        {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
+                    </Button>
+                    <Button>
+                        <Link
+                            to='/users'
+                            style={linkStyles}
+                        >
+                            Users
+                        </Link>
+                    </Button>
+                    <Button>
+                        <Link
+                            to='/'
+                            style={linkStyles}
+                        >
+                            Dashboard
+                        </Link>
+                    </Button>
+                </ButtonGroup>
             </Box>
             <TreeView
                 aria-label='file system navigator'

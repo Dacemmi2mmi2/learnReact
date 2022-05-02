@@ -32,7 +32,9 @@ export interface IUserProps {
 }
 
 export interface IUsersPageHook {
-    listUsers: IUserData[] | []
+    listUsers: IUserData[] | [],
+    errorMessage: boolean,
+    loading: boolean
 }
 
 export interface IAlbumsData {
