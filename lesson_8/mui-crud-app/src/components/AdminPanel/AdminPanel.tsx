@@ -4,6 +4,7 @@ import { AlbumsPage } from './AlbumsPage/AlbumsPage';
 import { DashboardPage } from './DashboardPage/DashboardPage';
 import { UserContentPage } from './UsersPage/UserContentPage/UserContentPage';
 import { UsersPage } from './UsersPage/UsersPage';
+import { FormPage } from './FormPage/FromPage';
 
 export const AdminPanel = (): ReactElement => {
     return (
@@ -23,6 +24,14 @@ export const AdminPanel = (): ReactElement => {
             <Route
                 path='/albums'
                 element={<AlbumsPage /> }
+            />
+            <Route
+                path='/createUser'
+                element={<FormPage />}
+            />
+            <Route
+                path='/updateUser/:id'
+                element={<FormPage />}
             />
         </Routes>
     );

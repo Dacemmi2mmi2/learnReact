@@ -31,7 +31,11 @@ export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElem
                                 variant="contained"
                                 size='small'
                             >
-                                add user
+                                <Link
+                                    style={linkStyles}
+                                    to={'/createUser'}>
+                                    add user
+                                </Link>
                             </Button>
                         </TableCell>
                     </TableRow>
@@ -51,7 +55,14 @@ export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElem
                                     <TableCell align="left">{item.email}</TableCell>
                                     <TableCell align='center'>
                                         <ButtonGroup variant="contained" size='small'>
-                                            <Button>edit</Button>
+                                            <Button>
+                                                <Link
+                                                    to={`/updateUser/${item.id}`}
+                                                    style={linkStyles}
+                                                >
+                                                    edit
+                                                </Link>
+                                            </Button>
                                             <Button>delete</Button>
                                             <Button>
                                                 <Link
