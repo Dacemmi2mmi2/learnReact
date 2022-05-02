@@ -52,8 +52,13 @@ export interface IAlbumsPageHook {
     listAlbums: IAlbumsData[] | []
 }
 
-export interface IUserContentHook {
+export interface IUserContentPageHook {
     dataUser: IUserData,
+    errorMessage: boolean,
+    loading: boolean,
+}
+
+export interface IUserContentHook {
     expanded: string[] | [],
     handleExpandClick: Function
 }

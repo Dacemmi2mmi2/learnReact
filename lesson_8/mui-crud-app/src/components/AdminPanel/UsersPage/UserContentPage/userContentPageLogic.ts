@@ -7,32 +7,31 @@ import { getApi } from '../../../../services/loaders'
 import {
     IUserData,
     IAlbumsData,
-    IUserContentHook
+    IUserContentPageHook
 } from '../../../../services/interfaces';
 
-export const useUserContent = (): IUserContentHook => {
+export const useUserPageContent = (): IUserContentPageHook => {
     const [dataUser, setDataUser] = useState({} as IUserData);
-    const [expanded, setExpanded] = useState([] as string[] | []);
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [loading, setLoading] = useState(true);;
     const { id } = useParams();
     const uri = `users/${id}`;
-
-    const handleExpandClick = (): void => {
-        setExpanded((oldExpanded) =>
-            oldExpanded.length === 0 ? ['1', '8', '13', '16'] : [],
-        );
-    };
 
     useEffect((): void => {
         getApi(uri)
             .then((data: IUserData[] | IAlbumsData[] | IUserData): void => {
-                setDataUser(data as IUserData)
+                setDataUser(data as IUserData);
+                setLoading(false);
+            })
+            .catch(() => {
+                setErrorMessage(true);
             });
         //eslint-disable-next-line
     }, []);
 
     return {
         dataUser,
-        expanded,
-        handleExpandClick
+        errorMessage,
+        loading,
     }
 }

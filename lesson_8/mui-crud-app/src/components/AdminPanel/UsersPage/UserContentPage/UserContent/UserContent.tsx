@@ -13,12 +13,11 @@ import { Link } from 'react-router-dom';
 import {
     IUserData,
     IUserContentHook
-} from '../../../../services/interfaces';
-import { linkStyles } from '../../../../services/additionalStyles';
+} from '../../../../../services/interfaces';
+import { linkStyles } from '../../../../../services/additionalStyles';
 
-export const UserContent = (): ReactElement => {
+export const UserContent = ({ dataUser }: { dataUser: IUserData }): ReactElement => {
     const {
-        dataUser,
         expanded,
         handleExpandClick
     } = useUserContent() as IUserContentHook;

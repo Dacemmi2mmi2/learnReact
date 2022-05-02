@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AlbumsPage } from './AlbumsPage/AlbumsPage';
 import { DashboardPage } from './DashboardPage/DashboardPage';
-import { UserContent } from './UsersPage/UserContent/UserContent';
+import { UserContentPage } from './UsersPage/UserContentPage/UserContentPage';
 import { UsersPage } from './UsersPage/UsersPage';
 
 export const AdminPanel = (): ReactElement => {
@@ -18,7 +18,7 @@ export const AdminPanel = (): ReactElement => {
             />
             <Route
                 path='/users/:id'
-                element={<UserContent />}
+                element={<UserContentPage />}
             />
             <Route
                 path='/albums'
