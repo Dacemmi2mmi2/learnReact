@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeStatus, deleteItem } from '../store/actions/actions';
-import { ITodoItem } from '../services/interfaces';
+import { ITodoItem, ITodoListHook } from '../services/interfaces';
 
-export const useTodoListHook = () => {
+export const useTodoListHook = (): ITodoListHook => {
     const todos = useSelector((state) => (state as { todos: ITodoItem[] }).todos);
     const dispatch = useDispatch();
 
@@ -17,6 +17,6 @@ export const useTodoListHook = () => {
     return {
         todos,
         changeStatusTodoItem,
-        deleteTodoItem
+        deleteTodoItem,
     }
 }

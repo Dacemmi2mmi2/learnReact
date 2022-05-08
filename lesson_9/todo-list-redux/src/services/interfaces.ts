@@ -1,3 +1,5 @@
+import { ChangeEventHandler, FormEventHandler } from 'react';
+
 export interface ITodoItem {
     id: number,
     notice: string,
@@ -6,5 +8,17 @@ export interface ITodoItem {
 
 export interface IAction {
     type: string,
-    payload: number 
+    payload: number | ITodoItem;
+}
+
+export interface IAddTodoItemHook {
+    onChange: ChangeEventHandler,
+    submitData: FormEventHandler,
+    todoItem: ITodoItem
+}
+
+export interface ITodoListHook {
+    todos: ITodoItem[]
+    changeStatusTodoItem: Function,
+    deleteTodoItem: Function
 }

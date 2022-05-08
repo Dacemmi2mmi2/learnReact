@@ -4,19 +4,10 @@ import {
 } from '../../services/interfaces';
 import {
     CHANGE_STATE_TODO_ITEM,
-    DELETE_TODO_ITEM
+    DELETE_TODO_ITEM,
+    ADD_TODO_ITEM
 } from '../actions/actions';
-
-const INIT_STATE: { todos: ITodoItem[] } = {
-    todos: [
-        { id: 1, notice: "todo1", isDone: true },
-        { id: 2, notice: "todo2", isDone: false },
-        { id: 3, notice: "todo3", isDone: false },
-        { id: 4, notice: "todo4", isDone: false },
-        { id: 5, notice: "todo5", isDone: false },
-        { id: 6, notice: "todo6", isDone: false },
-    ],
-}
+import { INIT_STATE } from '../../services/consts';
 
 export const reducer = (state = INIT_STATE, { type, payload }: IAction): { todos: ITodoItem[] } => {
     switch (type) {
@@ -28,6 +19,9 @@ export const reducer = (state = INIT_STATE, { type, payload }: IAction): { todos
             const newListWithoutItem = state.todos.filter((item: ITodoItem): boolean =>
                 item.id !== payload);
             return { todos: newListWithoutItem }
+        case ADD_TODO_ITEM:
+            const newListWithNewItem = [...state.todos, (payload as ITodoItem)];
+            return { todos: newListWithNewItem }
         default:
             return state;
     }
