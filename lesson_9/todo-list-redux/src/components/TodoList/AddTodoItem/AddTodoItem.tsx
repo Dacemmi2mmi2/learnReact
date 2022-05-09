@@ -23,14 +23,14 @@ export const AddTodoItem = (): ReactElement => {
             <TextField
                 name='notice'
                 label='notice'
-                defaultValue={todoItem.notice}
+                value={todoItem.notice}
                 onChange={onChange}
             />
             <TextField
                 type={'number'}
                 name='id'
                 label='id'
-                defaultValue={todoItem.id}
+                value={todoItem.id}
                 onChange={onChange}
             />
             <Button

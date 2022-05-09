@@ -15,7 +15,7 @@ export const useAddTodoItemHook = (): IAddTodoItemHook => {
     const submitData = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         dispatch(addItem(todoItem));
-        setDataTodoItem({ notice: '' } as SetStateAction<ITodoItem>);
+        setDataTodoItem({ ...dataTodoItem } as SetStateAction<ITodoItem>);
     }
 
     return {
