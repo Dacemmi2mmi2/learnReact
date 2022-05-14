@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import error from '../../img/error.png';
+import error from '../../../img/error.png';
 import './Error.css';
 
 export const Error = (): ReactElement => {

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import './LoadingPage.css';
+import './Loading.css';
 
-export const LoadingPage = (): ReactElement => {
+export const Loading = (): ReactElement => {
     return (
         <div className='LoadingPage'>
             <div className='container-loader'>

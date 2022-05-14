@@ -1,8 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { API } from './api';
-// import { IAlbumsData, IUserData } from './interfaces';
+import { usersURI } from './consts';
+import { IUser } from './interfaces';
 
-const uri = 'users';
+export const getApi = (): Promise<IUser[]> =>
+    API.get(usersURI)
+        .then(({ data }: AxiosResponse) => JSON.parse(data));
 
-export const getApi = (): Promise<any> => API.get(uri)
-    .then(({ data }: AxiosResponse) => JSON.parse(data));
+export const remove = (id: number | string): Promise<IUser> =>
+    API.delete(`${usersURI}/${id}`)
+        .then(({ data }: AxiosResponse) => JSON.parse(data));
