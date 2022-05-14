@@ -15,7 +15,7 @@ export const UsersPanel = (): ReactElement => {
                 element={<FormUserPage />}
             />
             <Route
-                path='/from:id'
+                path='/form/:id'
                 element={<FormUserPage />}
             />
         </Routes>

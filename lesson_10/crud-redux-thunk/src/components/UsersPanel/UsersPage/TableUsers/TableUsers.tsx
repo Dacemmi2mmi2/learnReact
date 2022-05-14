@@ -17,7 +17,7 @@ import { useTableUsersHook } from '../../../../hooks/useTableUsersHook';
 export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
     const {
         deleteUser,
-        editUser
+        createOrEditUser
     } = useTableUsersHook();
 
     return (
@@ -38,7 +38,10 @@ export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
                             phone
                         </TableCell>
                         <TableCell align={alignTableRow}>
-                            <Button variant={variantBtn}>
+                            <Button
+                                variant={variantBtn}
+                                onClick={(): void => createOrEditUser()}
+                            >
                                 add user
                             </Button>
                         </TableCell>
@@ -51,7 +54,7 @@ export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
                                 <TableRow
                                     key={user.id}
                                     sx={stylesTbodyRow}
-                                    onClick={(): void => editUser(user.id)}
+                                    onClick={(): void => createOrEditUser(user.id)}
                                 >
                                     <TableCell align={alignTableRow}>
                                         {user.id}

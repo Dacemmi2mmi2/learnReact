@@ -1,53 +1,28 @@
 import { ReactElement } from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { variantBtn } from '../../../services/consts';
+import { Loading } from '../../commonPages/Loading/Loading';
+import { Error } from '../../commonPages/Error/Error';
+import { FormUser } from '../FormUserPage/FormUser/FormUser';
 import { useFormUserPageHook } from '../../../hooks/useFormUserPage';
+import { IUseFormUserPageHook } from '../../../services/interfaces';
 
 export const FormUserPage = (): ReactElement => {
     const {
-        createOrEditUser,
-        toUsersPage
-    } = useFormUserPageHook();
+        user,
+        loading,
+        error,
+    } = useFormUserPageHook() as IUseFormUserPageHook;
+
+    const pages = (): ReactElement => {
+        switch (true) {
+            case loading: return <Loading />;
+            case error: return <Error />;
+            default: return <FormUser user={user}/>
+        }
+    }
 
     return (
         <>
-            <Box
-                component='form'
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField
-                    label='name'
-                    defaultValue='name'
-                />
-                <TextField
-                    label='surname'
-                    defaultValue='surname'
-                />
-                <TextField
-                    label='phone'
-                    defaultValue='phone'
-                />
-            </Box>
-            <Button
-                variant={variantBtn}
-                sx={{ ml: 1 }}
-                onClick={createOrEditUser}
-            >
-                save
-            </Button>
-            <Button
-                variant={variantBtn}
-                sx={{ ml: 1 }}
-                onClick={toUsersPage}
-            >
-                cancel
-            </Button>
+            {pages()}
         </>
     );
 }
