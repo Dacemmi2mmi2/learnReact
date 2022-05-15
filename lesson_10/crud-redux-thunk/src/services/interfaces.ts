@@ -1,4 +1,6 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react'
+import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 
 export interface IUser {
     id: number | string,
@@ -30,4 +32,18 @@ export interface IUseFormHook {
     saveUser: MouseEventHandler<HTMLButtonElement>,
     toUsersPage: MouseEventHandler<HTMLButtonElement>,
     writeUser: ChangeEventHandler<HTMLInputElement>
+}
+
+export interface IActionThunk {
+    (dispatch: Dispatch<AnyAction>, getState: () => IState): void
+}
+
+export interface IState {
+    listUsers: { users: IUser[] | [] },
+    formUser: { user: IUser }
+}
+
+export interface IAction {
+    type: string,
+    payload: IUser[] | IUser
 }

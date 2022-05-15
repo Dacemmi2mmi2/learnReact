@@ -1,16 +1,23 @@
 import {
-    SetStateAction,
     useEffect,
     useState,
 } from 'react';
+import {
+    useSelector,
+    useDispatch
+} from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { IUseFormUserPageHook } from '../services/interfaces';
-import { IUser } from '../services/interfaces';
+import {
+    IUseFormUserPageHook,
+    IState
+} from '../services/interfaces';
 import { getApi } from '../services/loaders';
 import { emptyUser } from '../services/consts';
+import { getFormUserThunk } from '../store/formUser/actionsFormUser';
 
 export const useFormUserPageHook = (): IUseFormUserPageHook => {
-    const [user, setUser] = useState({} as IUser);
+    const user = useSelector(({ formUser }: IState) => formUser.user);
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const { id } = useParams();
@@ -19,19 +26,21 @@ export const useFormUserPageHook = (): IUseFormUserPageHook => {
     useEffect((): void => {
         if (id) {
             getApi(uri)
-                .then((data): void => {
-                    setUser(data as SetStateAction<IUser>);
+                .then((user): void => {
+                    // @ts-expect-error
+                    dispatch(getFormUserThunk(user));
                     setLoading(false);
                 })
                 .catch((): void => {
                     setError(true);
                 });
         } else {
-            setUser(emptyUser as SetStateAction<IUser>);
+            // @ts-expect-error
+            dispatch(getFormUserThunk(emptyUser));
             setLoading(false);
         }
         // eslint-disable-next-line
-    }, []);
+    }, [dispatch]);
 
 
     return {

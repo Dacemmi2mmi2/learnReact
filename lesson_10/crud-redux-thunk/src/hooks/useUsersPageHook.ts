@@ -1,29 +1,34 @@
 import {
-    SetStateAction,
     useEffect,
     useState
 } from 'react';
 import {
-    IUser,
+    useSelector,
+    useDispatch,
+} from 'react-redux';
+import {
+    IState,
     IUseUserPageHook
 } from '../services/interfaces';
 import { getApi } from '../services/loaders';
+import { getListUsersThunk } from '../store/users/actionsUsers';
 
 export const useUsersPageHook = (): IUseUserPageHook => {
-    const [users, setUsers] = useState([] as IUser[] | []);
+    const users = useSelector(({ listUsers }: IState) => listUsers.users);
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect((): void => {
-        getApi()
-            .then((data): void => {
-                setUsers(data as SetStateAction<IUser[]>);
-                setLoading(false);
-            })
-            .catch((): void => {
-                setError(true);
-            });
-    }, []);
+        getApi().then((users) => {
+            //@ts-expect-error
+            dispatch(getListUsersThunk(users));
+            setLoading(false);
+        })
+        .catch((): void => {
+            setError(true);
+        });
+    }, [dispatch]);
 
     return {
         users,
