@@ -1,6 +1,5 @@
 import { ChangeEventHandler, MouseEventHandler } from 'react';
-import { Dispatch } from 'redux';
-import { AnyAction } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
 
 export interface IUser {
     id: number | string,
@@ -27,6 +26,11 @@ export interface IUseFormUserPageHook {
     error: boolean,
 }
 
+export interface IUseTableUsersHook {
+    deleteUser: Function,
+    toFormUser: Function
+}
+
 export interface IUseFormHook {
     user: IUser,
     saveUser: MouseEventHandler<HTMLButtonElement>,
@@ -38,9 +42,17 @@ export interface IActionThunk {
     (dispatch: Dispatch<AnyAction>, getState: () => IState): void
 }
 
+export interface IListUsersState {
+    users: IUser[] | []
+}
+
+export interface IFormUserState {
+    user: IUser
+}
+
 export interface IState {
-    listUsers: { users: IUser[] | [] },
-    formUser: { user: IUser }
+    listUsers: IListUsersState,
+    formUser: IFormUserState
 }
 
 export interface IAction {

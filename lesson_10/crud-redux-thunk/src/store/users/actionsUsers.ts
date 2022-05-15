@@ -1,5 +1,5 @@
 import { AnyAction, Dispatch } from 'redux';
-import { create, remove } from '../../services/loaders';
+import { remove, create, update } from '../../services/loaders';
 import {
     IUser,
     IActionThunk,
@@ -7,15 +7,9 @@ import {
 } from '../../services/interfaces';
 
 export const USERS_SET_LIST_USERS = 'USERS_SET_LIST_USERS';
-export const setListUsers = (users: IUser | IUser[]): AnyAction => ({
+export const setListUsers = (users: IUser[]): AnyAction => ({
     type: USERS_SET_LIST_USERS,
     payload: users
-});
-
-export const USERS_CREATE_USER = 'USERS_CREATE_USER';
-export const createNewUser = (user: IUser): AnyAction => ({
-    type: USERS_CREATE_USER,
-    payload: user
 });
 
 export const getListUsersThunk = (listUsers: IUser[]): IActionThunk =>
@@ -24,14 +18,23 @@ export const getListUsersThunk = (listUsers: IUser[]): IActionThunk =>
     }
 
 export const createNewUserThunk = (user: IUser): IActionThunk =>
-    (dispatch: Dispatch<AnyAction>): void => {
+    (dispatch: Dispatch<AnyAction>, getState: () => IState): void => {
+        const { listUsers } = getState();
         create(user)
-            .then((newUser) => dispatch(createNewUser(newUser)));
+            .then((newUser) => {
+                const updatedListUsers = [...listUsers.users, newUser];
+                dispatch(setListUsers(updatedListUsers));
+            });
     }
 
-export const updateUserThunk = (id: number | string): IActionThunk =>
+export const updateUserThunk = (id: number | string, user: IUser): IActionThunk =>
     (dispatch: Dispatch<AnyAction>, getState: () => IState): void => {
-        // const { users } = getState();
+        const { listUsers } = getState();
+        update(id, user)
+            .then((updatedUser) => {
+                const updatedListUsers = listUsers.users.map((user) => user.id === id ? updatedUser : user);
+                dispatch(setListUsers(updatedListUsers));
+            })
     }
 
 export const deleteUserThunk = (id: number | string): IActionThunk =>

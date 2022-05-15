@@ -11,8 +11,8 @@ export const remove = (id: number | string): Promise<IUser> =>
     API.delete(`${usersURI}/${id}`)
         .then(({ data }: AxiosResponse) => JSON.parse(data));
 
-export const update = (id: string | number): Promise<IUser> =>
-    API.put(`${usersURI}/${id}`)
+export const update = (id: string | number, user: IUser): Promise<IUser> =>
+    API.put(`${usersURI}/${id}`, JSON.stringify(user))
         .then(({ data }: AxiosResponse) => JSON.parse(data));
 
 export const create = (user: IUser): Promise<IUser> =>

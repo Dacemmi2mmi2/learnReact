@@ -20,14 +20,15 @@ export const useUsersPageHook = (): IUseUserPageHook => {
     const [error, setError] = useState(false);
 
     useEffect((): void => {
-        getApi().then((users) => {
-            //@ts-expect-error
-            dispatch(getListUsersThunk(users));
-            setLoading(false);
-        })
-        .catch((): void => {
-            setError(true);
-        });
+        getApi()
+            .then((users) => {
+                //@ts-expect-error
+                dispatch(getListUsersThunk(users));
+                setLoading(false);
+            })
+            .catch((): void => {
+                setError(true);
+            });
     }, [dispatch]);
 
     return {

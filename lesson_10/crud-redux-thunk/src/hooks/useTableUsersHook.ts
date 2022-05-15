@@ -1,19 +1,23 @@
-import { remove } from '../services/loaders';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteUserThunk } from '../store/users/actionsUsers';
+import { IUseTableUsersHook } from '../services/interfaces';
 
-export const useTableUsersHook = () => {
+export const useTableUsersHook = (): IUseTableUsersHook => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const deleteUser = (id: number | string): void => {
-        remove(id);
+        //@ts-expect-error
+        dispatch(deleteUserThunk(id));
     }
 
-    const createOrEditUser = (id?: number | string): void => {
+    const toFormUser = (id?: number | string): void => {
         id ? navigate(`/form/${id}`) : navigate('/form');
     }
 
     return {
         deleteUser,
-        createOrEditUser
+        toFormUser
     }
 }

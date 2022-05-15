@@ -1,20 +1,18 @@
-import { IAction, IUser } from '../../services/interfaces';
 import {
-    USERS_SET_LIST_USERS,
-    USERS_CREATE_USER
-} from './actionsUsers';
+    IAction,
+    IUser,
+    IListUsersState
+} from '../../services/interfaces';
+import { USERS_SET_LIST_USERS } from './actionsUsers';
 
-const INIT_STATE_USER: { users: IUser[] } = {
+const INIT_STATE_USER: IListUsersState = {
     users: []
 }
 
-export const reduserUsers = (state = INIT_STATE_USER, { type, payload }: IAction) => {
+export const reduserUsers = (state = INIT_STATE_USER, { type, payload }: IAction): IListUsersState => {
     switch (type) {
         case USERS_SET_LIST_USERS:
             return { ...state, users: [...(payload as IUser[])] };
-        case USERS_CREATE_USER:
-            const newUser = { id: Date.now(), ...payload };
-            return { ...state, users: [...state.users, newUser] };
         default: return state;
     }
 }

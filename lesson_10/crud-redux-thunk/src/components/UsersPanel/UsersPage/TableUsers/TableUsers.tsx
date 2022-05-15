@@ -6,19 +6,22 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
-import { IUser } from '../../../../services/interfaces';
+import { useTableUsersHook } from '../../../../hooks/useTableUsersHook';
+import {
+    IUser,
+    IUseTableUsersHook
+} from '../../../../services/interfaces';
 import {
     alignTableRow,
     variantBtn,
     stylesTbodyRow
 } from '../../../../services/consts';
-import { useTableUsersHook } from '../../../../hooks/useTableUsersHook';
 
 export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
     const {
         deleteUser,
-        createOrEditUser
-    } = useTableUsersHook();
+        toFormUser
+    } = useTableUsersHook() as IUseTableUsersHook;
 
     return (
         <TableContainer>
@@ -40,7 +43,7 @@ export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
                         <TableCell align={alignTableRow}>
                             <Button
                                 variant={variantBtn}
-                                onClick={(): void => createOrEditUser()}
+                                onClick={(): void => toFormUser()}
                             >
                                 add user
                             </Button>
@@ -54,7 +57,7 @@ export const TableUsers = ({ users }: { users: IUser[] }): ReactElement => {
                                 <TableRow
                                     key={user.id}
                                     sx={stylesTbodyRow}
-                                    onClick={(): void => createOrEditUser(user.id)}
+                                    onClick={(): void => toFormUser(user.id)}
                                 >
                                     <TableCell align={alignTableRow}>
                                         {user.id}
