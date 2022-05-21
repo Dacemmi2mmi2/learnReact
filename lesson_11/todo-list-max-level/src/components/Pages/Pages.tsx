@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ToDoList } from '../ToDoList/TodoList';
+import { ToDoListPage } from '../Pages/ToDoListPage';
 
-export const ToDosPanel = (): ReactElement => {
+export const Pages = (): ReactElement => {
     return (
         <Routes>
             <Route
                 path='/'
-                element={<ToDoList />}
+                element={<ToDoListPage />}
             />
             <Route 
                 path='/form'

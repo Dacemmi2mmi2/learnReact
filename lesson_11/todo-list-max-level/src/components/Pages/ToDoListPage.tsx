@@ -1,0 +1,28 @@
+import { ReactElement } from 'react';
+import { ToDoList } from '../ToDoList/TodoList';
+import { LoadingPage } from './LoadingPage/LoadingPage';
+import { ErrorPage } from './ErrorPage/ErrorPage';
+import { useTodoListPage } from '../../hooks/useToDoListPage';
+import { IUseTodoListPage } from '../../services/interfaces';
+
+export const ToDoListPage = (): ReactElement => {
+    const {
+        todos,
+        loading,
+        error
+    } = useTodoListPage() as IUseTodoListPage;
+
+    const pages = (): ReactElement => {
+        switch (true) {
+            case loading: return <LoadingPage />;
+            case error: return <ErrorPage />;
+            default: return <ToDoList todos={todos} />
+        }
+    }
+
+    return (
+        <>
+            {pages()}
+        </>
+    );
+}
