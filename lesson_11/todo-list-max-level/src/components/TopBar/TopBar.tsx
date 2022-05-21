@@ -51,20 +51,36 @@ export const TopBar = (props: ITopBarProps): ReactElement => {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleClose} disableRipple>
+                            <MenuItem
+                                id='All'
+                                onClick={handleClose}
+                                disableRipple
+                            >
                                 <FormatListNumberedIcon />
                                 All tasks
                             </MenuItem>
-                            <MenuItem onClick={handleClose} disableRipple>
+                            <MenuItem
+                                id='Done'
+                                onClick={handleClose}
+                                disableRipple
+                            >
                                 <DoneIcon />
                                 Done tasks
                             </MenuItem>
                             <Divider sx={{ my: 0.5 }} />
-                            <MenuItem onClick={handleClose} disableRipple>
+                            <MenuItem
+                                id='Progress'
+                                onClick={handleClose}
+                                disableRipple
+                            >
                                 <RotateRightIcon />
                                 In progress tasks
                             </MenuItem>
-                            <MenuItem onClick={handleClose} disableRipple>
+                            <MenuItem
+                                id='Add'
+                                onClick={handleClose}
+                                disableRipple
+                            >
                                 <PlaylistAddIcon />
                                 Add task
                             </MenuItem>
