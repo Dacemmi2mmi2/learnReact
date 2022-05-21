@@ -1,4 +1,4 @@
-// import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 import { Dispatch, AnyAction } from 'redux';
 
 export interface ITodo {
@@ -30,9 +30,21 @@ export interface IUseTodoListPage {
     error: boolean
 }
 
+export interface IUseTopBar {
+    anchorElement: null | HTMLElement,
+    open: boolean,
+    handleClick: MouseEventHandler<HTMLButtonElement>,
+    handleClose: MouseEventHandler<HTMLLIElement>
+}
+
 export interface ITodoItemProps {
     key: number | string,
     id: number | string,
     text: string,
     status: boolean
+}
+
+export interface ITopBarProps {
+    window?: () => Window;
+    children?: ReactElement;
 }

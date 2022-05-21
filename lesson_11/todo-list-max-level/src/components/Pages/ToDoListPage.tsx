@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { ToDoList } from '../ToDoList/TodoList';
+import { TopBar } from '../TopBar/TopBar';
 import { LoadingPage } from './LoadingPage/LoadingPage';
 import { ErrorPage } from './ErrorPage/ErrorPage';
 import { useTodoListPage } from '../../hooks/useToDoListPage';
@@ -16,7 +17,10 @@ export const ToDoListPage = (): ReactElement => {
         switch (true) {
             case loading: return <LoadingPage />;
             case error: return <ErrorPage />;
-            default: return <ToDoList todos={todos} />
+            default: return <>
+                <TopBar />
+                <ToDoList todos={todos}/>
+            </>
         }
     }
 

@@ -20,9 +20,10 @@ export const styleCarsActions: { [key: string]: string | number } = {
     justifyContent: 'flex-end'
 }
 
-export const styleCard: { [key: string]: string } = {
+export const styleCard: { [key: string]: string | number } = {
+    width: 500,
     boxShadow: '10px 10px 20px',
-    m: '2px 30px 25px 20px',
+    m: '15px 30px 25px 20px',
     display: 'flex',
     justifyContent: 'flex-start',
     alignContent: 'center',
