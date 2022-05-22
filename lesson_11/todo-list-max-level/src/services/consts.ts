@@ -48,7 +48,7 @@ export const styleCarsActions: { [key: string]: string | number } = {
 }
 
 export const styleCard: { [key: string]: string | number } = {
-    width: 400,
+    maxWidth: 400,
     boxShadow: '10px 10px 20px',
     m: '15px 30px 25px 20px',
     display: 'flex',
