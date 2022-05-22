@@ -15,6 +15,7 @@ export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
         statuses,
         register,
         errors,
+        isDirty,
         handleSubmit,
         closeModal,
         saveTodoItem,
@@ -70,6 +71,7 @@ export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
                     sx={{ width: '100px' }}
                     startIcon={<SaveIcon />}
                     type='submit'
+                    disabled={!isDirty}
                 >
                     Save
                 </Button>

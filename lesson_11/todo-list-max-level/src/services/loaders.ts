@@ -3,7 +3,7 @@ import { API } from './api';
 import { todosURI } from './consts';
 import { ITodo } from './interfaces';
 
-export const getApi = (uri: string = todosURI): Promise<ITodo[]> =>
+export const getApi = (uri: string = todosURI): Promise<ITodo[] | ITodo> =>
     API.get(uri)
         .then(({ data }: AxiosResponse) => JSON.parse(data));
 

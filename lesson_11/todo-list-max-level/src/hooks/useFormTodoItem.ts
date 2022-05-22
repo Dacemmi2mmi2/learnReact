@@ -1,34 +1,44 @@
-import { useState, ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { emptyTodoItem } from '../services/consts';
-import { ITodo, IState, IFormTodoItemProps } from '../services/interfaces';
-import { createNewTodoThunk } from '../store/toDoList/actionsToDoList';
+import { ITodo, IFormTodoItemProps } from '../services/interfaces';
+import { createNewTodoThunk, updateTodoThunk } from '../store/toDoList/actionsToDoList';
+import { getApi } from '../services/loaders';
 
 
 export const useFormTodoItem = (props: IFormTodoItemProps) => {
-    const { id } = useSelector(({ formTodoItem }: IState) => formTodoItem.todo);
     const { closeModal } = props;
     const [status, setStatus] = useState('in progress');
-    const statuses: string[] = ['done', 'in progress'];
+    const [todoItem, setTodoItem] = useState(emptyTodoItem as ITodo);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { id } = useParams();
+    const uri = `todos/${id}`;
+    const statuses: string[] = ['done', 'in progress'];
 
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        setValue,
+        setFocus,
+        watch,
+        formState: { errors, isDirty }
     } = useForm<ITodo>({ defaultValues: emptyTodoItem });
 
     const handleChangeStatus = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-        // console.log(target.value)
         setStatus(target.value);
     }
 
+    const { title } = watch();
+
     const saveTodoItem = (todo: ITodo): void => {
         if (id) {
-
+            dispatch(
+                // @ts-expect-error
+                updateTodoThunk(id, { ...todoItem, title: title })
+            )
         } else {
             dispatch(
                 //@ts-expect-error
@@ -40,12 +50,29 @@ export const useFormTodoItem = (props: IFormTodoItemProps) => {
         navigate('/');
     }
 
+    useEffect(() => {
+        if (id) {
+            getApi(uri)
+                .then((todoItem): void => {
+                    setTodoItem(todoItem as ITodo);
+                    setValue('title', (todoItem as ITodo).title);
+                    setFocus('title');
+                });
+        } else {
+            setTodoItem(emptyTodoItem as ITodo);
+            setValue('title', emptyTodoItem.title)
+            setFocus('title');
+        }
+        // eslint-disable-next-line
+    }, []);
+
     return {
         id,
         status,
         statuses,
         register,
         errors,
+        isDirty,
         handleSubmit,
         closeModal,
         saveTodoItem,

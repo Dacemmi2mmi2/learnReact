@@ -14,6 +14,10 @@ export const Pages = (): ReactElement => {
                     path='form'
                     element={<FormTodoItemPage />}
                 />
+                <Route
+                    path='form/:id'
+                    element={<FormTodoItemPage />}
+                />
             </Route>
         </Routes>
     );

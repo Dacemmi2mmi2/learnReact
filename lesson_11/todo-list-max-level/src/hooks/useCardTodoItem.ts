@@ -1,4 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toggleViewModal } from '../store/formToDoItem/actionsFormTodoItem';
 import { ITodo, ITodoItemProps } from '../services/interfaces';
 import {
     deleteTodoThunk,
@@ -8,6 +10,7 @@ import {
 export const useCardTodoItem = (props: ITodoItemProps) => {
     const { id, text, status } = props;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const deleteTodoItem = (id: number | string): void => {
         //@ts-expect-error
@@ -25,7 +28,9 @@ export const useCardTodoItem = (props: ITodoItemProps) => {
     }
 
     const updateDescriptionTodoItem = (id: number | string): void => {
-        console.log('descr')
+        navigate(`form/${id}`);
+        dispatch(toggleViewModal(true));
+        // dispatch(setTodoItem);
     }
 
     return {
