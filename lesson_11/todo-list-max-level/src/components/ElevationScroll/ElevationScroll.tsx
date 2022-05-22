@@ -9,6 +9,7 @@ export const ElevationScroll = (props: ITopBarProps): ReactElement => {
         threshold: 0,
         target: window ? window() : undefined,
     });
+    
     //@ts-expect-error
     return React.cloneElement(children, {
         elevation: trigger ? 4 : 0,

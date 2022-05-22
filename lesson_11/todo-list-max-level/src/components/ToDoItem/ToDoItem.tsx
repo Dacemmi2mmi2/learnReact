@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
-import { ITodoItemProps } from '../../services/interfaces';
+import { ITodoItemProps, IUseCardTodoItem } from '../../services/interfaces';
 import linkTodoImg from '../../img/todo.png';
 import {
     styleFabs,
@@ -27,28 +27,33 @@ export const ToDoItem = (props: ITodoItemProps): ReactElement => {
         deleteTodoItem,
         toggleStatusTodoItem,
         updateDescriptionTodoItem
-    } = useCardTodoItem(props);
+    } = useCardTodoItem(props) as IUseCardTodoItem;
 
     return (
         <Card sx={styleCard}>
             <CardContent sx={{ width: 120 }}>
                 <Typography sx={{ display: 'flex', fontSize: 15 }}>
                     {status ? 'done' : 'in progress'}
-                    {status ? <DoneIcon sx={styleProgressIcon} /> : <RotateRightIcon sx={styleProgressIcon} />}
+                    {
+                        status ?
+                            <DoneIcon sx={styleProgressIcon} /> :
+                            <RotateRightIcon sx={styleProgressIcon} />
+                    }
                 </Typography>
-                <img src={linkTodoImg} alt="TodoList" style={{ width: '100%' }} />
+                <img src={linkTodoImg} alt='TodoList' style={{ width: '100%' }} />
             </CardContent>
             <CardContent sx={{ width: 200 }}>
                 <Typography
                     gutterBottom
-                    variant="h5"
-                    component="div"
+                    variant='h5'
+                    component='div'
                 >
                     {`${id}. task`}
                 </Typography>
                 <Typography
-                    variant="body2"
-                    color="text.secondary"
+                    variant='body2'
+                    color='text.secondary'
+                    sx={{overflowWrap: 'break-word'}}
                 >
                     {text}
                 </Typography>

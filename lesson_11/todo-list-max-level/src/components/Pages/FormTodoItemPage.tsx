@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { IUseFormTodoItemPage } from '../../services/interfaces';
+import { styleModalForm } from '../../services/consts';
 
 export const FormTodoItemPage = (): ReactElement => {
     const { open, handleClose } = useFormTodoItemPage() as IUseFormTodoItemPage;
@@ -23,17 +24,7 @@ export const FormTodoItemPage = (): ReactElement => {
             }}
         >
             <Fade in={open}>
-                <Box sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: window.screen.width * .6,
-                    bgcolor: 'white',
-                    border: '2px solid #000',
-                    boxShadow: 24,
-                    p: 4,
-                }}>
+                <Box sx={styleModalForm}>
                     <Typography sx={{ mb: 2 }} variant="h6" component="h2">
                         Form Todo Item
                     </Typography>

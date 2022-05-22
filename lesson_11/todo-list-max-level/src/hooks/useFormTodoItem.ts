@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { emptyTodoItem } from '../services/consts';
-import { ITodo, IFormTodoItemProps } from '../services/interfaces';
+import { ITodo, IFormTodoItemProps, IUseFormTodoItem } from '../services/interfaces';
 import { createNewTodoThunk, updateTodoThunk } from '../store/toDoList/actionsToDoList';
 import { getApi } from '../services/loaders';
 
-
-export const useFormTodoItem = (props: IFormTodoItemProps) => {
+export const useFormTodoItem = (props: IFormTodoItemProps): IUseFormTodoItem => {
     const { closeModal } = props;
     const [status, setStatus] = useState('in progress');
     const [todoItem, setTodoItem] = useState(emptyTodoItem as ITodo);

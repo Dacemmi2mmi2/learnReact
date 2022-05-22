@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import CancelIcon from "@mui/icons-material/CancelOutlined";
+import CancelIcon from '@mui/icons-material/CancelOutlined';
 import SaveIcon from "@mui/icons-material/SaveOutlined";
 import { useFormTodoItem } from '../../hooks/useFormTodoItem';
-import { IFormTodoItemProps } from '../../services/interfaces';
+import { IFormTodoItemProps, IUseFormTodoItem } from '../../services/interfaces';
 
 export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
     const {
@@ -20,7 +20,7 @@ export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
         closeModal,
         saveTodoItem,
         handleChangeStatus
-    } = useFormTodoItem(props);
+    } = useFormTodoItem(props) as IUseFormTodoItem;
 
     return (
         <form
@@ -30,7 +30,7 @@ export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
             <TextField
                 sx={{ width: '100%' }}
                 select
-                label="Status"
+                label='Status'
                 value={status}
                 onChange={handleChangeStatus}
                 disabled={id ? true : false}
@@ -49,8 +49,8 @@ export const FormTodoItem = (props: IFormTodoItemProps): ReactElement => {
                 }
             </TextField>
             <TextField
-                label="Description"
-                variant="outlined"
+                label='Description'
+                variant='outlined'
                 sx={{ mt: 2, width: '100%' }}
                 {
                 ...register('title',

@@ -12,7 +12,7 @@ export const useTodoListPage = (): IUseTodoListPage => {
 
     useEffect((): void => {
         getApi()
-            .then((todos) => {
+            .then((todos): void => {
                 //@ts-expect-error
                 dispatch(getTodoListThunk(todos));
                 setLoading(false);
