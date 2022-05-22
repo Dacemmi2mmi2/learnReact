@@ -1,4 +1,12 @@
+import { ITodo } from './interfaces';
+
 export const todosURI = 'todos';
+
+export const emptyTodoItem: ITodo = {
+    id: '',
+    title: '',
+    completed: false
+}
 
 export const styleProgressIcon: { [key: string]: number } = {
     ml: 1

@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { useCardTodoItem } from '../../hooks/useCardTodoItem';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -19,7 +20,14 @@ import {
 } from '../../services/consts';
 
 export const ToDoItem = (props: ITodoItemProps): ReactElement => {
-    const { id, text, status } = props as ITodoItemProps;
+    const {
+        id,
+        text,
+        status,
+        deleteTodoItem,
+        toggleStatusTodoItem,
+        updateDescriptionTodoItem
+    } = useCardTodoItem(props);
 
     return (
         <Card sx={styleCard}>
@@ -51,6 +59,7 @@ export const ToDoItem = (props: ITodoItemProps): ReactElement => {
                     color='info'
                     aria-label='edit'
                     size='small'
+                    onClick={(): void => toggleStatusTodoItem(id)}
                 >
                     <CallMissedOutgoingIcon />
                 </Fab>
@@ -59,6 +68,7 @@ export const ToDoItem = (props: ITodoItemProps): ReactElement => {
                     color='info'
                     aria-label='edit'
                     size='small'
+                    onClick={(): void => updateDescriptionTodoItem(id)}
                 >
                     <EditIcon />
                 </Fab>
@@ -67,6 +77,7 @@ export const ToDoItem = (props: ITodoItemProps): ReactElement => {
                     color='error'
                     aria-label='delete'
                     size='small'
+                    onClick={(): void => deleteTodoItem(id)}
                 >
                     <DeleteIcon />
                 </Fab>

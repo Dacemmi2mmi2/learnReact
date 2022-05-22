@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { Outlet } from 'react-router-dom';
 import { ToDoList } from '../ToDoList/TodoList';
 import { TopBar } from '../TopBar/TopBar';
 import { LoadingPage } from './LoadingPage/LoadingPage';
@@ -20,6 +21,7 @@ export const ToDoListPage = (): ReactElement => {
             default: return <>
                 <TopBar />
                 <ToDoList todos={todos}/>
+                <Outlet />
             </>
         }
     }

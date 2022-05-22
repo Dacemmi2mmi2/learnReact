@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToDoListPage } from '../Pages/ToDoListPage';
+import { FormTodoItemPage } from '../Pages/FormTodoItemPage';
 
 export const Pages = (): ReactElement => {
     return (
@@ -8,13 +9,12 @@ export const Pages = (): ReactElement => {
             <Route
                 path='/'
                 element={<ToDoListPage />}
-            />
-            <Route 
-                path='/form'
-            />
-            <Route 
-                path='/form/:id'
-            />
+            >
+                <Route
+                    path='form'
+                    element={<FormTodoItemPage />}
+                />
+            </Route>
         </Routes>
     );
 }

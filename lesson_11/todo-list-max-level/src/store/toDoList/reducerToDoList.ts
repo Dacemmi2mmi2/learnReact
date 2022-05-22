@@ -13,7 +13,7 @@ const INIT_STATE_TODOS: IListToDosState = {
     todos: []
 }
 
-export const reduserTodoList = (state = INIT_STATE_TODOS, { type, payload }: IAction): IListToDosState => {
+export const reducerTodoList = (state = INIT_STATE_TODOS, { type, payload }: IAction): IListToDosState => {
     switch (type) {
         case TODOLIST_SET_LIST_TODOS:
             return { ...state, todos: [...(payload as ITodo[])] };

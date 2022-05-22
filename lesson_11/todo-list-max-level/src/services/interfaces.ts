@@ -11,8 +11,14 @@ export interface IListToDosState {
     todos: ITodo[] | []
 }
 
+export interface IFormTodoItemState {
+    todo: ITodo,
+    viewModal: boolean
+}
+
 export interface IState {
     listTodos: IListToDosState,
+    formTodoItem: IFormTodoItemState
 }
 
 export interface IActionThunk {
@@ -21,7 +27,7 @@ export interface IActionThunk {
 
 export interface IAction {
     type: string,
-    payload: ITodo[] | ITodo
+    payload: ITodo[] | ITodo | boolean
 }
 
 export interface IUseTodoListPage {
@@ -37,11 +43,20 @@ export interface IUseTopBar {
     handleClose: MouseEventHandler<HTMLLIElement>
 }
 
+export interface IUseFormTodoItemPage {
+    open: boolean,
+    handleClose: MouseEventHandler<HTMLLIElement>
+}
+
 export interface ITodoItemProps {
     key: number | string,
     id: number | string,
     text: string,
     status: boolean
+}
+
+export interface IFormTodoItemProps {
+    closeModal: MouseEventHandler<HTMLButtonElement | HTMLLIElement>
 }
 
 export interface ITopBarProps {

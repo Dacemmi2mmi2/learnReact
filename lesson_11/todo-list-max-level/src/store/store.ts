@@ -4,12 +4,12 @@ import {
     combineReducers
 } from 'redux';
 import thunk from 'redux-thunk';
-import { reduserTodoList } from '../store/toDoList/reducerToDoList';
-// import { reducerFormUser } from './formUser/reducerFormUser';
+import { reducerTodoList } from '../store/toDoList/reducerToDoList';
+import { reducerFormTodoItem } from '../store/formToDoItem/reducerFormTodoItem';
 
 const reducers = combineReducers({
-    listTodos: reduserTodoList,
-    // formUser: reducerFormUser
+    listTodos: reducerTodoList,
+    formTodoItem: reducerFormTodoItem
 });
 
 export const store = createStore(reducers, applyMiddleware(thunk));
