@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent } from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 export interface Iaddres {
     city: string,
@@ -75,7 +76,8 @@ export interface IUseGetDataUserHook {
 export interface IUseFormUsers {
     dataUserForm: IUserData,
     submitData: (event: FormEvent<HTMLFormElement>) => void,
-    onChangeMainFields: ({ target }: ChangeEvent<HTMLInputElement>) => void
+    onChangeMainFields: ({ target }: ChangeEvent<HTMLInputElement>) => void,
+    navigate: NavigateFunction
 }
 
 export interface IFormProps {

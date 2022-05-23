@@ -6,12 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button, ButtonGroup } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IUserData } from '../../services/interfaces';
-import { linkStyles } from '../../services/additionalStyles';
 import { deleteItem } from '../../services/loaders';
 
 export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElement => {
+    const navigate = useNavigate();
+
     return (
         <TableContainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -26,12 +27,16 @@ export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElem
                             <Button
                                 variant="contained"
                                 size='small'
+                                onClick={(): void => navigate('/createUser')}
                             >
-                                <Link
-                                    style={linkStyles}
-                                    to={'/createUser'}>
-                                    add user
-                                </Link>
+                                add user
+                            </Button>
+                            <Button
+                                variant="contained"
+                                size='small'
+                                onClick={(): void => navigate('/')}
+                            >
+                                Dashboard
                             </Button>
                         </TableCell>
                     </TableRow>
@@ -51,15 +56,10 @@ export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElem
                                     <TableCell align="left">{item.email}</TableCell>
                                     <TableCell align='center'>
                                         <ButtonGroup variant="contained" size='small'>
-                                            <Button>
-                                                <Link
-                                                    to={`/updateUser/${item.id}`}
-                                                    style={linkStyles}
-                                                >
-                                                    edit
-                                                </Link>
+                                            <Button onClick={(): void => navigate(`/updateUser/${item.id}`)}>
+                                                edit
                                             </Button>
-                                            <Button 
+                                            <Button
                                                 onClick={
                                                     (): Promise<IUserData> => deleteItem('users', item.id)
                                                 }

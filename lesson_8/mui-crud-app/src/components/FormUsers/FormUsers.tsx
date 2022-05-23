@@ -3,9 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ButtonGroup } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/formHook';
-import { linkStyles, fontFamily } from '../../services/additionalStyles';
 import { IFormProps, IUseFormUsers } from '../../services/interfaces';
 
 export const FormUsers = (props: IFormProps): ReactElement => {
@@ -20,6 +18,7 @@ export const FormUsers = (props: IFormProps): ReactElement => {
         },
         submitData,
         onChangeMainFields,
+        navigate
     } = useForm(props) as IUseFormUsers;
 
     return (
@@ -31,7 +30,7 @@ export const FormUsers = (props: IFormProps): ReactElement => {
             onSubmit={submitData}
         >
             <div className='user'>
-                <p style={fontFamily}>User</p>
+                <p style={{ fontFamily: 'Arial' }}>User</p>
                 <TextField
                     name='name'
                     label='name'
@@ -76,13 +75,8 @@ export const FormUsers = (props: IFormProps): ReactElement => {
                 <Button type='submit'>
                     save
                 </Button>
-                <Button>
-                    <Link
-                        to={'/users'}
-                        style={linkStyles}
-                    >
-                        cancel
-                    </Link>
+                <Button onClick={(): void => navigate('/users')}>
+                    cancel
                 </Button>
             </ButtonGroup>
         </Box>

@@ -27,5 +27,6 @@ export const useForm = (props: IFormProps): IUseFormUsers => {
         dataUserForm,
         submitData,
         onChangeMainFields,
+        navigate
     }
 }
