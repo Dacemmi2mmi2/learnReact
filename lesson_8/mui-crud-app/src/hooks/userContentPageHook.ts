@@ -3,17 +3,17 @@ import {
     useEffect,
     useState
 } from 'react';
-import { getApi } from '../../../../services/loaders'
+import { getApi } from '../services/loaders'
 import {
     IUserData,
     IAlbumsData,
     IUserContentPageHook
-} from '../../../../services/interfaces';
+} from '../services/interfaces';
 
 export const useUserPageContent = (): IUserContentPageHook => {
     const [dataUser, setDataUser] = useState({} as IUserData);
     const [errorMessage, setErrorMessage] = useState(false);
-    const [loading, setLoading] = useState(true);;
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const uri = `users/${id}`;
 

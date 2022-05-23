@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { AlbumsPage } from './AlbumsPage/AlbumsPage';
-import { DashboardPage } from './DashboardPage/DashboardPage';
-import { UserContentPage } from './UsersPage/UserContentPage/UserContentPage';
-import { UsersPage } from './UsersPage/UsersPage';
-import { FormPage } from './FormPage/FromPage';
+import { AlbumsPage } from '../pages/AlbumsPage';
+import { DashboardPage } from '../pages/DashboardPage';
+import { UserContentPage } from '../pages/UserContentPage';
+import { UsersPage } from '../pages/UsersPage';
+import { CreateOrEditUserPage } from '../pages/CreateOrEditUserPage';
 
 export const AdminPanel = (): ReactElement => {
     return (
@@ -27,11 +27,11 @@ export const AdminPanel = (): ReactElement => {
             />
             <Route
                 path='/createUser'
-                element={<FormPage />}
+                element={<CreateOrEditUserPage />}
             />
             <Route
                 path='/updateUser/:id'
-                element={<FormPage />}
+                element={<CreateOrEditUserPage />}
             />
         </Routes>
     );

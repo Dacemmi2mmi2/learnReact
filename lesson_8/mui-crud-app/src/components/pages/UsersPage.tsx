@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import { TableUsers } from './TableUsers/TableUsers';
-import { ErrorPage } from '../../ErrorPge/ErrorPage';
-import { useUsers } from './userPageLogic';
-import { LoadingPage } from '../../LoadingPage/LoadingPage';
-import { IUsersPageHook } from '../../../services/interfaces';
+import { TableUsers } from '../TableUsers/TableUsers';
+import { ErrorPage } from '../pages/ErrorPge/ErrorPage';
+import { useUsers } from '../../hooks/userPageHook';
+import { LoadingPage } from '../pages/LoadingPage/LoadingPage';
+import { IUsersPageHook } from '../../services/interfaces';
 
 export const UsersPage = (): ReactElement => {
     const {

@@ -7,8 +7,8 @@ import {
     IAlbumsData,
     IUserData,
     IUsersPageHook
-} from '../../../services/interfaces';
-import { getApi } from '../../../services/loaders';
+} from '../services/interfaces';
+import { getApi } from '../services/loaders';
 
 export const useUsers = (): IUsersPageHook => {
     const [listUsers, setListUsres] = useState([] as IUserData[] | []);

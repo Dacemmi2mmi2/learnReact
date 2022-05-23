@@ -5,15 +5,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {
-    Button,
-    ButtonGroup
-} from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
-import {
-    IUserData
-} from '../../../../services/interfaces';
-import { linkStyles } from '../../../../services/additionalStyles';
+import { IUserData } from '../../services/interfaces';
+import { linkStyles } from '../../services/additionalStyles';
 
 export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElement => {
     return (

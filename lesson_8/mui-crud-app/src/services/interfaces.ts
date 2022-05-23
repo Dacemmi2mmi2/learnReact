@@ -19,7 +19,7 @@ export interface IUserData {
     address: Iaddres,
     company: Icompany,
     email: string,
-    id: number,
+    id: number | string,
     name: string,
     phone: string,
     username: string,
@@ -61,4 +61,9 @@ export interface IUserContentPageHook {
 export interface IUserContentHook {
     expanded: string[] | [],
     handleExpandClick: Function
+}
+
+export interface IFormProps {
+    dataUser: IUserData,
+    edit: undefined | string
 }

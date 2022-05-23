@@ -1,130 +1,139 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Input } from '@mui/material';
 import { ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useFormPage } from './formPageLogic';
-import { linkStyles, fontFamily } from '../../../services/additionalStyles';
-import { IUserData } from '../../../services/interfaces';
+import { useForm } from '../../hooks/formHook';
+import { linkStyles, fontFamily } from '../../services/additionalStyles';
+import { IFormProps, IUserData } from '../../services/interfaces';
 
-export const FormPage = (): ReactElement => {
-    const { dataUser, navigate } = useFormPage();
-    console.log(dataUser);
-    let {
+export const FormUsers = (props: IFormProps): ReactElement => {
+    const {
+        dataUserFrom,
+        submitData,
+        onChange
+    } = useForm(props);
+
+    const {
         address,
         company,
-        email,
-        id,
         name,
-        phone,
         username,
+        id,
+        phone,
+        email,
         website
-    } = dataUser as IUserData;
+    } = dataUserFrom as IUserData;
 
-    const test = (event: any) => {
-        event.preventDefault();
-        navigate('/users');
-    }
-
-    const [value, setValue] = useState('name');
     return (
         <Box
-            component="form"
-            onSubmit={test}
+            component='form'
             sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
             noValidate
-            autoComplete="off"
+            autoComplete='off'
+            onSubmit={submitData}
         >
-            <div>
+            <div className='user'>
                 <p style={fontFamily}>User</p>
                 <TextField
-                    id='name'
+                    name='name'
                     label='name'
-                    defaultValue={''}
-                    onChange={(e) => {
-                        name = e.target.value
-                    }}
+                    defaultValue={name}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='username'
+                    name='username'
                     label='username'
                     defaultValue={username}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='id'
+                    name='id'
                     label='id'
                     defaultValue={id}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='phone'
+                    name='phone'
                     label='phone'
                     defaultValue={phone}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='email'
+                    name='email'
                     label='email'
                     defaultValue={email}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='website'
+                    name='website'
                     label='website'
                     defaultValue={website}
+                    onChange={onChange}
                 />
             </div>
-            <div>
+            <div className='addres'>
                 <p style={fontFamily}>Addres</p>
                 <TextField
-                    id='city'
+                    name='city'
                     label='city'
                     defaultValue={address?.city}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='street'
+                    name='street'
                     label='street'
                     defaultValue={address?.street}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='suite'
+                    name='suite'
                     label='suite'
                     defaultValue={address?.suite}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='zipcode'
+                    name='zipcode'
                     label='zipcode'
                     defaultValue={address?.zipcode}
+                    onChange={onChange}
                 />
                 <div>
                     <p style={fontFamily}>Location</p>
                     <TextField
-                        id='lat'
+                        name='lat'
                         label='lat'
                         defaultValue={address?.geo.lat}
+                        onChange={onChange}
                     />
                     <TextField
-                        id='lng'
+                        name='lng'
                         label='lng'
                         defaultValue={address?.geo.lng}
+                        onChange={onChange}
                     />
                 </div>
             </div>
-            <div>
+            <div className='company'>
                 <p style={fontFamily}>Company</p>
                 <TextField
-                    id='bs'
+                    name='bs'
                     label='bs'
                     defaultValue={company?.bs}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='catchPhrase'
+                    name='catchPhrase'
                     label='catchPhrase'
                     defaultValue={company?.catchPhrase}
+                    onChange={onChange}
                 />
                 <TextField
-                    id='companyName'
+                    name='company name'
                     label='name'
                     defaultValue={company?.name}
+                    onChange={onChange}
                 />
             </div>
             <ButtonGroup
@@ -132,12 +141,7 @@ export const FormPage = (): ReactElement => {
                 sx={{ mt: 5 }}
             >
                 <Button type='submit'>
-                    {/* <Link
-                        to={'/users'}
-                        style={linkStyles}
-                    > */}
-                        save
-                    {/* </Link> */}
+                    save
                 </Button>
                 <Button>
                     <Link
@@ -151,4 +155,3 @@ export const FormPage = (): ReactElement => {
         </Box>
     );
 }
-

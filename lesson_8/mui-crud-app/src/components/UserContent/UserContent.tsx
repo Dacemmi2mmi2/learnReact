@@ -1,20 +1,14 @@
 import { ReactElement } from 'react';
-import { useUserContent } from './userContentLogic';
+import { useUserContent } from '../../hooks/userContentHook';
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import Box from '@mui/material/Box';
-import {
-    Button,
-    ButtonGroup
-} from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
-import {
-    IUserData,
-    IUserContentHook
-} from '../../../../../services/interfaces';
-import { linkStyles } from '../../../../../services/additionalStyles';
+import { IUserData, IUserContentHook } from '../../services/interfaces';
+import { linkStyles } from '../../services/additionalStyles';
 
 export const UserContent = ({ dataUser }: { dataUser: IUserData }): ReactElement => {
     const {
@@ -23,8 +17,14 @@ export const UserContent = ({ dataUser }: { dataUser: IUserData }): ReactElement
     } = useUserContent() as IUserContentHook;
 
     const {
-        address,
-        company,
+        address: {
+            city,
+            geo: { lat, lng },
+            street,
+            suite,
+            zipcode
+        },
+        company: { bs, catchPhrase },
         email,
         id,
         name,
@@ -32,6 +32,7 @@ export const UserContent = ({ dataUser }: { dataUser: IUserData }): ReactElement
         username,
         website
     } = dataUser as IUserData;
+
 
     return (
         <Box>
@@ -74,19 +75,18 @@ export const UserContent = ({ dataUser }: { dataUser: IUserData }): ReactElement
                     <TreeItem nodeId='7' label={`website: ${website}`} />
                 </TreeItem>
                 <TreeItem nodeId='8' label='Address'>
-                    <TreeItem nodeId="9" label={`city: ${address?.city}`} />
-                    <TreeItem nodeId="10" label={`street: ${address?.street}`} />
-                    <TreeItem nodeId="11" label={`suite: ${address?.suite}`} />
-                    <TreeItem nodeId="12" label={`zipcode: ${address?.zipcode}`} />
+                    <TreeItem nodeId="9" label={`city: ${city}`} />
+                    <TreeItem nodeId="10" label={`street: ${street}`} />
+                    <TreeItem nodeId="11" label={`suite: ${suite}`} />
+                    <TreeItem nodeId="12" label={`zipcode: ${zipcode}`} />
                     <TreeItem nodeId="13" label='Location'>
-                        <TreeItem nodeId="14" label={`lat: ${address?.geo.lat}`} />
-                        <TreeItem nodeId="15" label={`lng: ${address?.geo.lng}`} />
+                        <TreeItem nodeId="14" label={`lat: ${lat}`} />
+                        <TreeItem nodeId="15" label={`lng: ${lng}`} />
                     </TreeItem>
                 </TreeItem>
                 <TreeItem nodeId='16' label='Company'>
-                    <TreeItem nodeId='17' label={`bs: ${company?.bs}`} />
-                    <TreeItem nodeId='18' label={`catchPhrase: ${company?.catchPhrase}`} />
-                    <TreeItem nodeId='19' label={`name: ${company?.name}`} />
+                    <TreeItem nodeId='17' label={`bs: ${bs}`} />
+                    <TreeItem nodeId='18' label={`catchPhrase: ${catchPhrase}`} />
                 </TreeItem>
             </TreeView>
         </Box>

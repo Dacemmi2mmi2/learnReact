@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import { UserContent } from './UserContent/UserContent';
-import { useUserPageContent } from './userContentPageLogic';
-import { ErrorPage } from '../../../ErrorPge/ErrorPage';
-import { LoadingPage } from '../../../LoadingPage/LoadingPage';
-import { IUserContentPageHook } from '../../../../services/interfaces';
+import { UserContent } from '../UserContent/UserContent';
+import { useUserPageContent } from '../../hooks/userContentPageHook';
+import { ErrorPage } from '../pages/ErrorPge/ErrorPage';
+import { LoadingPage } from '../pages/LoadingPage/LoadingPage';
+import { IUserContentPageHook } from '../../services/interfaces';
 
 export const UserContentPage = (): ReactElement => {
     const {

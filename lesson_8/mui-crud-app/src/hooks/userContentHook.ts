@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IUserContentHook } from '../../../../../services/interfaces';
+import { IUserContentHook } from '../services/interfaces';
 
 export const useUserContent = (): IUserContentHook => {
     const [expanded, setExpanded] = useState([] as string[] | []);
