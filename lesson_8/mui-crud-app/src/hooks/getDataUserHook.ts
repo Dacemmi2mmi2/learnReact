@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { emptyUser } from '../services/const';
-import { IUserData } from '../services/interfaces';
+import { IUserData, IUseGetDataUserHook } from '../services/interfaces';
 import { getApi } from '../services/loaders';
 
-export const useGetDataUserHook = () => {
+export const useGetDataUserHook = (): IUseGetDataUserHook => {
     const [dataUser, setDataUser] = useState({} as IUserData);
     const [errorMessage, setErrorMessage] = useState(false);
     const [loading, setLoading] = useState(true);

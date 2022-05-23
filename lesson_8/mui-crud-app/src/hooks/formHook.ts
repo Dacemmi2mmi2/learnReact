@@ -1,39 +1,31 @@
-// import { create, update } from '../services/loaders';
-import { ChangeEvent, useState } from 'react';
+import { create, update } from '../services/loaders';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IFormProps, IUserData } from '../services/interfaces';
-import { emptyUser } from '../services/const';
+import { IFormProps, IUserData, IUseFormUsers } from '../services/interfaces';
 
-export const useForm = (props: IFormProps) => {
+export const useForm = (props: IFormProps): IUseFormUsers => {
     const { dataUser, edit } = props as IFormProps;
     const navigate = useNavigate();
-    const [dataUserFrom, setDataUserForm] = useState(dataUser);
-    const newDataUser = Object.assign({}, emptyUser);
+    const [dataUserForm, setDataUserForm] = useState(dataUser as IUserData);
+    const uri = 'users';
 
-    const onChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-        // if () {
-
-        // } else {
-        //     setDataUserForm({ ...dataUserFrom, [target.name]: target.value })
-        // }
+    const onChangeMainFields = ({ target }: ChangeEvent<HTMLInputElement>): void => {
+        setDataUserForm({ ...dataUserForm, [target.name]: target.value });
     }
 
-    const submitData = (event: any): void => {
+    const submitData = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        console.log(dataUserFrom);
-        // navigate('/users');
-        
         if (edit) {
-            // update()
+            update(uri, edit, dataUserForm);
         } else {
-            // create()
+            create(uri, dataUserForm);
         }
+        navigate(`/${uri}`);
     }
 
     return {
-        dataUserFrom,
-        setDataUserForm,
+        dataUserForm,
         submitData,
-        onChange
+        onChangeMainFields,
     }
 }

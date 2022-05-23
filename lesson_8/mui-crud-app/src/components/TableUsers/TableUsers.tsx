@@ -9,6 +9,7 @@ import { Button, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { IUserData } from '../../services/interfaces';
 import { linkStyles } from '../../services/additionalStyles';
+import { deleteItem } from '../../services/loaders';
 
 export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElement => {
     return (
@@ -58,14 +59,12 @@ export const TableUsers = ({ listUsers }: { listUsers: IUserData[] }): ReactElem
                                                     edit
                                                 </Link>
                                             </Button>
-                                            <Button>delete</Button>
-                                            <Button>
-                                                <Link
-                                                    to={String(item.id)}
-                                                    style={linkStyles}
-                                                >
-                                                    see more
-                                                </Link>
+                                            <Button 
+                                                onClick={
+                                                    (): Promise<IUserData> => deleteItem('users', item.id)
+                                                }
+                                            >
+                                                delete
                                             </Button>
                                         </ButtonGroup>
                                     </TableCell>

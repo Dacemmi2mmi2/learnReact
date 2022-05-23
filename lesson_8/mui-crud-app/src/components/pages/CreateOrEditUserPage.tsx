@@ -3,6 +3,7 @@ import { FormUsers } from '../FormUsers/FormUsers';
 import { ErrorPage } from '../pages/ErrorPge/ErrorPage';
 import { LoadingPage } from '../pages/LoadingPage/LoadingPage';
 import { useGetDataUserHook } from '../../hooks/getDataUserHook';
+import { IUseGetDataUserHook } from '../../services/interfaces';
 
 export const CreateOrEditUserPage = (): ReactElement => {
     const {
@@ -10,7 +11,7 @@ export const CreateOrEditUserPage = (): ReactElement => {
         loading,
         dataUser,
         id
-    } = useGetDataUserHook();
+    } = useGetDataUserHook() as IUseGetDataUserHook;
 
     const pages = (): ReactElement => {
         switch (true) {

@@ -1,3 +1,5 @@
+import { ChangeEvent, FormEvent } from 'react';
+
 export interface Iaddres {
     city: string,
     geo: {
@@ -16,8 +18,8 @@ export interface Icompany {
 }
 
 export interface IUserData {
-    address: Iaddres,
-    company: Icompany,
+    address?: Iaddres,
+    company?: Icompany,
     email: string,
     id: number | string,
     name: string,
@@ -60,7 +62,20 @@ export interface IUserContentPageHook {
 
 export interface IUserContentHook {
     expanded: string[] | [],
-    handleExpandClick: Function
+    handleExpandClick: () => void
+}
+
+export interface IUseGetDataUserHook {
+    errorMessage: boolean,
+    loading: boolean,
+    dataUser: IUserData,
+    id: string | undefined
+}
+
+export interface IUseFormUsers {
+    dataUserForm: IUserData,
+    submitData: (event: FormEvent<HTMLFormElement>) => void,
+    onChangeMainFields: ({ target }: ChangeEvent<HTMLInputElement>) => void
 }
 
 export interface IFormProps {

@@ -6,25 +6,21 @@ import { ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/formHook';
 import { linkStyles, fontFamily } from '../../services/additionalStyles';
-import { IFormProps, IUserData } from '../../services/interfaces';
+import { IFormProps, IUseFormUsers } from '../../services/interfaces';
 
 export const FormUsers = (props: IFormProps): ReactElement => {
     const {
-        dataUserFrom,
+        dataUserForm: {
+            email,
+            id,
+            name,
+            phone,
+            username,
+            website
+        },
         submitData,
-        onChange
-    } = useForm(props);
-
-    const {
-        address,
-        company,
-        name,
-        username,
-        id,
-        phone,
-        email,
-        website
-    } = dataUserFrom as IUserData;
+        onChangeMainFields,
+    } = useForm(props) as IUseFormUsers;
 
     return (
         <Box
@@ -40,100 +36,37 @@ export const FormUsers = (props: IFormProps): ReactElement => {
                     name='name'
                     label='name'
                     defaultValue={name}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
                 <TextField
                     name='username'
                     label='username'
                     defaultValue={username}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
                 <TextField
                     name='id'
                     label='id'
                     defaultValue={id}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
                 <TextField
                     name='phone'
                     label='phone'
                     defaultValue={phone}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
                 <TextField
                     name='email'
                     label='email'
                     defaultValue={email}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
                 <TextField
                     name='website'
                     label='website'
                     defaultValue={website}
-                    onChange={onChange}
-                />
-            </div>
-            <div className='addres'>
-                <p style={fontFamily}>Addres</p>
-                <TextField
-                    name='city'
-                    label='city'
-                    defaultValue={address?.city}
-                    onChange={onChange}
-                />
-                <TextField
-                    name='street'
-                    label='street'
-                    defaultValue={address?.street}
-                    onChange={onChange}
-                />
-                <TextField
-                    name='suite'
-                    label='suite'
-                    defaultValue={address?.suite}
-                    onChange={onChange}
-                />
-                <TextField
-                    name='zipcode'
-                    label='zipcode'
-                    defaultValue={address?.zipcode}
-                    onChange={onChange}
-                />
-                <div>
-                    <p style={fontFamily}>Location</p>
-                    <TextField
-                        name='lat'
-                        label='lat'
-                        defaultValue={address?.geo.lat}
-                        onChange={onChange}
-                    />
-                    <TextField
-                        name='lng'
-                        label='lng'
-                        defaultValue={address?.geo.lng}
-                        onChange={onChange}
-                    />
-                </div>
-            </div>
-            <div className='company'>
-                <p style={fontFamily}>Company</p>
-                <TextField
-                    name='bs'
-                    label='bs'
-                    defaultValue={company?.bs}
-                    onChange={onChange}
-                />
-                <TextField
-                    name='catchPhrase'
-                    label='catchPhrase'
-                    defaultValue={company?.catchPhrase}
-                    onChange={onChange}
-                />
-                <TextField
-                    name='company name'
-                    label='name'
-                    defaultValue={company?.name}
-                    onChange={onChange}
+                    onChange={onChangeMainFields}
                 />
             </div>
             <ButtonGroup
